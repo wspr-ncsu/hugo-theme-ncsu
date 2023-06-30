@@ -1,18 +1,19 @@
 #sidebar {
 	order: 0;
 	flex: 0 1 320px;
-	position: sticky;
 
-	top: 4rem;
 	z-index: 1000;
 	height: calc(100vh-4rem);
 	border-right: 1px solid rgba(0,0,0,.1);
+	
+	margin-bottom: 2rem;
 }
 
 #toc {
 	order: 2;
+
+	top: 2rem;
 	position: sticky;
-	top: 4rem;
 
 	height: calc(100vh - 4rem);
 	overflow-y: auto;
@@ -27,6 +28,7 @@
 		ul {
 			margin-top: 0;
 			margin-bottom: 1rem;
+			padding-left: 1rem;
 			list-style-type: disc;
 			li {
 				display: block;
@@ -37,19 +39,28 @@
 					text-decoration: none;
 				}
 			}
-			> ul {
-				padding-left: 1rem;
-				margin-bottom: 0;
-			}
 		}
 	}
 }
 
 #markdown {
 	order: 1;
-	// Add margin to first markdown element on page, so that it doesn't overlap with ncsu bar on smaller screens
-	> :first-child {
-		margin-top: 40px;
+	// Add anchor styling
+	h1,h2,h3,h4,h5,h6 {
+		margin-top: 3rem;
+		a.anchor {
+			display: none;
+			font-size: .75em;
+			vertical-align: middle;
+			text-decoration: none;
+		}
+		&:hover a.anchor {
+			display: initial;
+		}
+	}
+	// Hide empty table headers
+	table tr th:empty {
+		display: none;
 	}
 }
 

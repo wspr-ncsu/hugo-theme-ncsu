@@ -1,0 +1,9 @@
+<div class="container">
+	<div class="row">
+		{{ range split .Inner "<--->" }}
+		<div class="col">
+			{{ . | safeHTML }}
+		</div>
+		{{ end }}
+	</div>
+</div>

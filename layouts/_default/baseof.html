@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html lang="{{ .Lang | default "en" }}">
-    {{- partial "head.html" . -}}
+	<head>
+    	{{- partial "head.html" . -}}
+	</head>
     <body>
 		<div id="ncstate-utility-bar" data-prop-show-brick="1" data-prop-cse-id="00578865650663686:7xmauxacbr4" ></div>
 		<div class="container-fluid">
-			{{- partial "header.html" . -}}
-			<div class="row flex-xl-nowrap">
+			<div class="row flex-xl-nowrap" style="margin-top:40px;">
 				<div class="col-12 col-md-3 col-xl-2" id="sidebar">
 					{{- partial "sidebar.html" . -}}
 				</div>
 				<div class="d-none d-xl-block col-xl-2" id="toc">
-					{{- .TableOfContents -}}
+					{{- partial "toc.html" . -}}
 				</div>
-				<div class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5" id="markdown">
-					{{- block "main" . }}{{- end }}
-					<div class="row" id="footer">
-						{{- partial "footer.html" . -}}
+				<main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5">
+					<header class="d-none d-md-block" id="content-header">
+						{{- partial "header.html" . -}}
+					</header>
+					<div id="markdown">
+						{{- block "main" . }}{{- end }}
 					</div>
-				</div>
+					<footer id="footer">
+						{{- partial "footer.html" . -}}
+					</footer>
+				</main>
 			</div>
 		</div>
 		<script src="https://cdn.ncsu.edu/brand-assets/utility-bar/v3/ncstate-utility-bar.js"></script>
