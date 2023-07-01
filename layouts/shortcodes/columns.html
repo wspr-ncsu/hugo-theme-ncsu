@@ -1,8 +1,9 @@
+{{ $context := . }}
 <div class="container">
 	<div class="row">
 		{{ range split .Inner "<--->" }}
-		<div class="col">
-			{{ . | safeHTML }}
+		<div class="col" {{- with $context.Get "width" -}}style="flex: 1 1 {{ . -}};"{{- end -}}>
+			{{ . | markdownify }}
 		</div>
 		{{ end }}
 	</div>
