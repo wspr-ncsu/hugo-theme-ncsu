@@ -1,3 +1,7 @@
+body {
+	font-size: 10pt; // Base font size
+}
+
 #sidebar {
 	order: 0;
 	flex: 0 1 320px;
@@ -45,6 +49,9 @@
 
 #markdown {
 	order: 1;
+	max-width: 1000px;
+	margin-right: auto;
+	margin-left: auto;
 	// Add anchor styling
 	h1,h2,h3,h4,h5,h6 {
 		margin-top: 3rem;

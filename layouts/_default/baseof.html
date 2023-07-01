@@ -7,17 +7,19 @@
 		<div id="ncstate-utility-bar" data-prop-show-brick="1" data-prop-cse-id="00578865650663686:7xmauxacbr4" ></div>
 		<div class="container-fluid">
 			<div class="row flex-xl-nowrap" style="margin-top:40px;">
-				<div class="col-12 col-md-3 col-xl-2" id="sidebar">
+    			{{ if default true (default .Site.Params.showSidebar .Params.showSidebar) }}
+				<div class="d-none d-lg-block col-lg-3 col-xl-2" id="sidebar">
 					{{- partial "sidebar.html" . -}}
 				</div>
+				{{ end }}
+    			{{ if default true (default .Site.Params.showToC .Params.showToC) }}
 				<div class="d-none d-xl-block col-xl-2" id="toc">
 					{{- partial "toc.html" . -}}
 				</div>
-				<main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5">
-					<header class="d-none d-md-block" id="content-header">
-						{{- partial "header.html" . -}}
-					</header>
+				{{ end }}
+				<main class="col-12 col-lg-9 col-xl-8 py-md-3 pl-md-5">
 					<div id="markdown">
+						<h1 class="display-3">{{- .Title -}}</h1>
 						{{- block "main" . }}{{- end }}
 					</div>
 					<footer id="footer">
