@@ -9,7 +9,7 @@ body {
 	z-index: 1000;
 	height: calc(100vh-4rem);
 	border-right: 1px solid rgba(0,0,0,.1);
-	
+
 	margin-bottom: 2rem;
 }
 
@@ -41,6 +41,9 @@ body {
 					padding: 0.125rem 1.5rem;
 					color: #99979c;
 					text-decoration: none;
+				}
+				> ul {
+					margin-bottom: 0;
 				}
 			}
 		}

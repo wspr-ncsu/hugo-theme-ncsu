@@ -1,7 +1,7 @@
-<!-- From: https://stackoverflow.com/questions/64609165/how-to-give-a-hugo-markdown-table-a-class-when-the-table-contains-shortcodes -->
+<!-- Modified from: https://stackoverflow.com/questions/64609165/how-to-give-a-hugo-markdown-table-a-class-when-the-table-contains-shortcodes -->
 {{ $htmlTable := .Inner | markdownify }}
 {{ $class := .Get 0 }}
 {{ $old := "<table>" }}
-{{ $new := printf "<table class=\"%s\">" $class }}
+{{ $new := printf "<table class=\"table %s\">" $class }}
 {{ $htmlTable := replace $htmlTable $old $new }}
 {{ $htmlTable | safeHTML }}
