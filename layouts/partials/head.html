@@ -7,7 +7,7 @@
 <!-- Theme-specific CSS -->
 {{- $cssTarget := "css/style.css" }}
 {{- $cssOptions	:= (dict "targetPath" $cssTarget "outputStyle" "compressed") }}
-{{- $style := resources.Get "style.scss" | resources.ExecuteAsTemplate "config.style.scss" . | toCSS $cssOptions | fingerprint }}
+{{- $style := resources.Get "main.scss" | resources.ExecuteAsTemplate "config.main.scss" . | toCSS $cssOptions | fingerprint }}
 <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
 
 <!-- Favicon and apple touch icons-->
