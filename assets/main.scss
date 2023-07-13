@@ -52,35 +52,68 @@ body {
 	}
 }
 
-#markdown {
+main {
 	order: 1;
-	max-width: 1000px;
-	margin-right: auto;
-	margin-left: auto;
-	// Add anchor styling
-	h1,h2,h3,h4,h5,h6 {
-		margin-top: 3rem;
-		a.anchor {
+	.site-branding {
+		color: #000;
+		clear: both;
+		text-align: center;
+		.site-title {
+			font-size: 3rem;
+		}
+		.site-subtitle {
+			font-size: 2rem;
+			color: #444;
+		}
+	}
+	nav#site-menu {
+		margin-top: 1rem;
+		border-bottom: 1px solid #dcdcdc;
+		ul {
+			flex-direction: row;
+			gap: 2rem;
+			li {
+				font-size: 14pt;
+				width: auto;
+				float: none;
+				display: inline-block;
+				&.active {
+					background-color:  #c00;
+					color: white;
+				}
+			}
+
+		}
+	}
+	#markdown {
+		max-width: 1000px;
+		margin-right: auto;
+		margin-left: auto;
+		// Add anchor styling
+		h1,h2,h3,h4,h5,h6 {
+			margin-top: 3rem;
+			a.anchor {
+				display: none;
+				font-size: .75em;
+				vertical-align: middle;
+				text-decoration: none;
+			}
+			&:hover a.anchor {
+				display: initial;
+			}
+		}
+		// Hide empty table headers
+		table tr th:empty {
 			display: none;
-			font-size: .75em;
-			vertical-align: middle;
-			text-decoration: none;
-		}
-		&:hover a.anchor {
-			display: initial;
 		}
 	}
-	// Hide empty table headers
-	table tr th:empty {
-		display: none;
+	#footer {
+		margin-top: 4rem;
+		padding-top: 1rem;
+		border-top: 1px solid rgba(0,0,0,.1);
+
+		font-size: .875rem;
+		color: #99979c;
 	}
-}
 
-#footer {
-	margin-top: 4rem;
-	padding-top: 1rem;
-	border-top: 1px solid rgba(0,0,0,.1);
-
-	font-size: .875rem;
-	color: #99979c;
 }
