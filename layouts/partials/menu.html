@@ -1,9 +1,9 @@
-{{ $current := .Page }}
 <nav id="site-menu" class="navbar">
 	<ul class="navbar-nav mx-auto">
-		{{ $page := (index (split $current.RelPermalink "/") 1)}}
-		{{- range site.Menus.main }}
+		{{ $page := (index (split .RelPermalink "/") 1)}}
+		{{ .Page.RelPermalink }}
 		{{ $active := (eq (path.Base .URL) $page)}}
+		{{- range site.Menus.main }}
 		<li class="nav-item {{ if $active }}active{{ end }}">
 			<a class="nav-link" href="{{ .URL | relURL }}">
 				{{ .Name }}
