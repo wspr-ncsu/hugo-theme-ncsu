@@ -1,1 +1,7 @@
 # Theme config.
+
+# Pull in some data from git
+enableGitInfo = true
+[frontmatter]
+	date = ["date", "publishDate", "lastmod"]
+	lastmod = ["lastmod", ":git", "date", "publishDate"]
