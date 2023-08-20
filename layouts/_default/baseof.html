@@ -2,9 +2,13 @@
 <html lang="{{ .Lang | default "en" }}">
 	<head>
 		{{- partial "head.html" . -}}
-		<title>{{- .Title -}}</title>
+		<!--- Meta Data -->
+		{{- block "title" . }}
+		<title>{{ .Title }}</title>
+		{{- end }}
 	</head>
 	<body>
+		<a id="skip-link" href="#markdown">Skip to text content</a>
 		<div id="ncstate-utility-bar" data-prop-show-brick="1" data-prop-cse-id="00578865650663686:7xmauxacbr4" ></div>
 		<div class="container-fluid">
 			<div class="row flex-xl-nowrap" style="margin-top:40px;">
