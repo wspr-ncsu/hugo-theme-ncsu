@@ -124,6 +124,19 @@ main {
 		table tr th:empty {
 			display: none;
 		}
+		blockquote {
+			margin: 1em 0;
+			padding: .5em 1em .5em .75em; //to keep total left space 16dp
+
+			border-inline-start: .25em solid #99979c;
+
+			:first-child {
+				margin-top: 0;
+			}
+			:last-child {
+				margin-bottom: 0;
+			}
+		}
 	}
 	#footer {
 		margin-top: 4rem;
