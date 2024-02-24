@@ -6,7 +6,7 @@
 <div style="width: {{ $w }};height: {{ $h }}px;margin: 0 auto; max-width:100%;">
 	<canvas id="{{ $id }}"></canvas>
 </div>
-<script type="module" src="{{ trim .Site.BaseURL '/' }}/js/chart.umd.js"></script>
+<script type="module" src="/js/chart.umd.js"></script>
 <script type="text/javascript">
 	document.addEventListener("DOMContentLoaded", function () {
 		var ctx = document.getElementById('{{ $id }}').getContext('2d');
