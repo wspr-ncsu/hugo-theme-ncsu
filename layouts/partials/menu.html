@@ -1,5 +1,5 @@
-<nav id="site-menu" class="navbar">
-	<ul class="navbar-nav mx-auto">
+<nav id="site-menu" class="navbar navbar-default">
+	<ul class="nav navbar-nav mx-auto">
 		{{ $page := (index (split .RelPermalink "/") 1)}}
 		{{ .Page.RelPermalink }}
 		{{ $active := (eq (path.Base .URL) $page)}}
