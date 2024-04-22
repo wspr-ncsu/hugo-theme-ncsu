@@ -1,0 +1,40 @@
+:root {
+  --blue: #427e93;
+  --indigo: #4156a1;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #cc0000;
+  --orange: #d14905;
+  --yellow: #fac800;
+  --green: #6F7D1C;
+  --teal: #20c997;
+  --cyan: #599baf;
+  --white: #fff;
+  --gray: #666666;
+  --gray-dark: #333333;
+  --brand-red: #cc0000;
+  --brand-reynolds: #990000;
+  --brand-indigo: #4156a1;
+  --brand-blue: #427e93;
+  --brand-green: #6F7D1C;
+  --brand-yellow: #fac800;
+  --brand-orange: #d14905;
+  --brand-aqua: #008473;
+  --primary: #cc0000;
+  --secondary: #666666;
+  --success: #8d9e2b;
+  --info: #599baf;
+  --warning: #f8da3e;
+  --danger: #e16408;
+  --light: #e5e5e5;
+  --dark: #333333;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+}
+
+$font-family-sans-serif: Inter, Roboto, system-ui, sans-serif !default;
+$font-family-serif: serif !default;
+$font-family-monospace: "Source Code Pro", ui-monospace, monospace !default;

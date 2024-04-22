@@ -1,14 +1,24 @@
-<nav id="site-menu" class="navbar navbar-default">
-	<ul class="nav navbar-nav mx-auto">
-		{{ $page := (index (split .RelPermalink "/") 1)}}
-		{{ .Page.RelPermalink }}
-		{{ $active := (eq (path.Base .URL) $page)}}
-		{{- range site.Menus.main }}
-		<li class="nav-item {{ if $active }}active{{ end }}">
-			<a class="nav-link" href="{{ .URL | relURL }}">
-				{{ .Name }}
-			</a>
-		</li>
-		{{- end }}
-	</ul>
+<nav id="site-menu" class="navbar navbar-expand-md navbar-light">
+    <div class="container-fluid">
+		<a class="navbar-brand" href="/">{{ site.Params.clong }}, {{ site.Params.iteration}}</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <!-- Navbar links with dynamic menu items and style -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto">
+                {{ $page := (index (split .RelPermalink "/") 1) }}
+                {{ .Page.RelPermalink }}
+                {{ $active := (eq (path.Base .URL) $page) }}
+                {{- range site.Menus.main }}
+                <li class="nav-item {{ if $active }}active{{ end }}">
+                    <a class="nav-link" href="{{ .URL | relURL }}">
+                        {{ .Name }}
+                    </a>
+                </li>
+                {{- end }}
+            </ul>
+        </div>
+    </div>
 </nav>

@@ -1,44 +1,45 @@
 <!DOCTYPE html>
 <html lang="{{ .Lang | default "en" }}">
-	<head>
-		{{- partial "head.html" . -}}
-		<!--- Meta Data -->
-		{{- block "title" . }}
-		<title>{{ .Title }} | {{ .Site.Params.clong }}</title>
-		{{- end }}
-	</head>
-	<body>
-		<a id="skip-link" href="#markdown">Skip to text content</a>
-		<div id="ncstate-utility-bar" data-prop-show-brick="1" data-prop-cse-id="00578865650663686:7xmauxacbr4" ></div>
-		<div class="container-fluid">
-			<div class="row flex-xl-nowrap" style="margin-top:40px;">
-				{{ if default true (default .Site.Params.showSidebar .Params.showSidebar) }}
-				<div class="d-none d-lg-block col-lg-3 col-xl-2" id="sidebar">
-					{{- partial "sidebar.html" . -}}
-				</div>
-				{{ end }}
-				{{ if default true (default .Site.Params.showToC .Params.showToC) }}
-				<div class="d-none d-xl-block col-xl-2" id="toc">
-					{{- partial "toc.html" . -}}
-				</div>
-				{{ end }}
-				<main class="col-12 col-lg-9 col-xl-8 py-md-3 pl-md-5">
-					<div class="site-branding modern">
-						<div class="site-title">{{- .Site.Title -}}</div>
-						<div class="site-subtitle">{{- .Site.Params.subtitle -}}</div>
-					</div>
+    <head>
+        <!--- Head -->
+        {{- partial "head.html" . -}}
+        <!--- Title -->
+        {{- block "title" . }}
+        <title>{{ .Title }} | {{ .Site.Params.clong }}</title>
+        {{- end }}
+    </head>
+    <body>
+        <a id="skip-link" href="#markdown">Skip to text content</a>
+        <div id="ncstate-utility-bar" data-prop-show-brick="1" data-prop-cse-id="00578865650663686:7xmauxacbr4" ></div>
+        <div class="container-fluid">
+            <div class="row flex-xl-nowrap" style="margin-top:40px;">
+                {{ if default true (default .Site.Params.showSidebar .Params.showSidebar) }}
+                <div class="d-none d-lg-block col-lg-3 col-xl-2" id="sidebar">
+                    {{- partial "sidebar.html" . -}}
+                </div>
+                {{ else }}
+                <div class="d-none d-xl-block col-xl-2">
+                </div>
+                {{ end }}
+                {{ if default true (default .Site.Params.showToC .Params.showToC) }}
+                <div class="d-none d-lg-block col-lg-2" id="toc">
+                    {{- partial "toc.html" . -}}
+                </div>
+                {{ end }}
+                <main class="col-12 col-lg-10 col-xl-8 py-md-3 ps-md-5">
 					{{ if default true (default .Site.Params.showMenu .Params.showMenu) }}
 					{{- partial "menu.html" -}}
 					{{ end }}
-					<div id="markdown">
-						{{- block "main" . }}{{- end }}
-					</div>
-					<footer id="footer">
-						{{- partial "footer.html" . -}}
-					</footer>
-				</main>
-			</div>
-		</div>
-		<script src="https://cdn.ncsu.edu/brand-assets/utility-bar/v3/ncstate-utility-bar.js"></script>
-	</body>
+                    <div id="markdown">
+                        {{- block "main" . }}{{- end }}
+                    </div>
+                    <footer id="footer">
+                        {{- partial "footer.html" . -}}
+                    </footer>
+                </main>
+            </div>
+        </div>
+        <script src="https://cdn.ncsu.edu/brand-assets/utility-bar/v3/ncstate-utility-bar.js"></script>
+        <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+    </body>
 </html>
