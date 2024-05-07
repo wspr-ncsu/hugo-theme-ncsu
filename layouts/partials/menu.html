@@ -9,8 +9,8 @@
         </button>
         
         <!-- Navbar links with dynamic menu items and style -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mx-auto">
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="nav nav-fill">
                 {{ $page := (index (split .RelPermalink "/") 1) }}
                 {{ .Page.RelPermalink }}
                 {{ $active := (eq (path.Base .URL) $page) }}

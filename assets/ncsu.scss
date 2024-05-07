@@ -95,19 +95,18 @@ main {
 		}
 	}
 	nav#site-menu {
-		margin-top: 1rem;
-		margin-bottom: 1rem;
 		ul {
-			flex-direction: row;
-			gap: 2rem;
 			li {
-				font-size: 14pt;
-				width: auto;
-				float: none;
-				display: inline-block;
+				font-size: 12pt;
 				&.active {
 					background-color:  #c00;
 					color: white;
+				}
+				a {
+					color: grey;
+					&:hover, :focus {
+						color:  #c00;
+					}
 				}
 			}
 
@@ -152,10 +151,6 @@ a {
 }
 
 #markdown {
-	max-width: 1000px;
-	margin-right: auto;
-	margin-left: auto;
-
 	h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 		margin-top: 2rem;
 		margin-bottom: 0.5rem;
