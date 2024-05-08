@@ -82,19 +82,21 @@ a#skip-link {
 
 main {
 	order: 1;
-	.site-branding {
-		color: #000;
-		clear: both;
-		text-align: center;
-		.site-title {
-			font-size: 3rem;
-		}
-		.site-subtitle {
-			font-size: 2rem;
-			color: #444;
-		}
-	}
 	nav#site-menu {
+		.navbar-brand {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			.brand-logo {
+				height: auto;
+				max-height: 2.4em;
+				margin-right: 10px;
+			}
+			.brand-text {
+				line-height: 1.2;
+			}
+		}
+
 		ul {
 			li {
 				font-size: 12pt;
