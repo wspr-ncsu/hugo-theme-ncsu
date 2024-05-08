@@ -1,5 +1,5 @@
 html {
-	font-family: $font-family-sans-serif; 
+	font-family: $font-family-sans-serif;
 	line-height: 1.15;
 	-webkit-text-size-adjust: 100%;
 	-ms-text-size-adjust: 100%;
@@ -98,12 +98,12 @@ main {
 		ul {
 			li {
 				font-size: 12pt;
-				&.active {
-					background-color:  #c00;
-					color: white;
-				}
 				a {
 					color: grey;
+					&.active {
+						color: #c00;
+						font-weight: 700;
+					}
 					&:hover, :focus {
 						color:  #c00;
 					}
@@ -225,7 +225,7 @@ a {
 		}
 	}
 	pre,code,kbd,samp {
-		font-family: $font-family-monospace; 
+		font-family: $font-family-monospace;
 		font-size: 1em;
 	}
 	pre {

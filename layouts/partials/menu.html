@@ -1,27 +1,29 @@
 <nav id="site-menu" class="navbar navbar-expand-md navbar-light">
-    <div class="container-fluid">
+	<div class="container-fluid">
 		<a class="navbar-brand" href="/">
 			<strong>{{ site.Params.clong }}</strong><br>
 			<small class="text-muted">{{ site.Params.cshort }} - {{ site.Params.iteration}}</small>
 		</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        
-        <!-- Navbar links with dynamic menu items and style -->
-        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-            <ul class="nav nav-fill">
-                {{ $page := (index (split .RelPermalink "/") 1) }}
-                {{ .Page.RelPermalink }}
-                {{ $active := (eq (path.Base .URL) $page) }}
-                {{- range site.Menus.main }}
-                <li class="nav-item {{ if $active }}active{{ end }}">
-                    <a class="nav-link" href="{{ .URL | relURL }}">
-                        {{ .Name }}
-                    </a>
-                </li>
-                {{- end }}
-            </ul>
-        </div>
-    </div>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+			<ul class="nav nav-fill">
+				{{ $currentPage := . }}
+				{{ range site.Menus.main }}
+					{{ $active := false }}
+					{{ if eq .Identifier ($currentPage.Params.menuHighlight | default "") }}
+						{{ $active = true }}
+					{{ else }}
+						{{ $page := (index (split $currentPage.RelPermalink "/") 1) }}
+						{{ $active = eq (lower .Name) $page }}
+					{{ end }}
+					<li class="nav-item ">
+						<a class="nav-link {{ if $active }}active{{ end }}" href="{{ .URL | relURL }}">{{ .Name }}</a>
+					</li>
+				{{ end }}
+			</ul>
+		</div>
+	</div>
 </nav>
