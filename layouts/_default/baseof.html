@@ -40,6 +40,7 @@
 						</span>
 					</div>
 					{{ end }}
+                    {{- partial "breadcrumbs.html" . -}}
 					<div id="markdown">
                         {{- block "main" . }}{{- end }}
                     </div>
