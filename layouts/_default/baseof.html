@@ -25,6 +25,9 @@
                 <div class="d-none d-lg-block col-lg-2" id="toc">
                     {{- partial "toc.html" . -}}
                 </div>
+                {{ else }}
+                <div class="d-none d-xl-block col-xl-2">
+                </div>
                 {{ end }}
                 <main class="col-12 col-lg-10 col-xl-8 py-md-3 ps-md-5">
 					{{ if default true (default .Site.Params.showMenu .Params.showMenu) }}
