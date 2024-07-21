@@ -11,6 +11,7 @@ disableKinds = ["taxonomy","RSS"]
 	cshort = "CSC XXX"
 	clong = "Example Lecture"
 	cfull = "CSC XXX - Example Lecture"
+	cdesc = "Some longer course description"
 	time = "Monday, Wednesday 6:00pm -- 7:15pm"
 	location = "1226 Engineering Building 2 (EB 2)"
 	# Theme specific setting

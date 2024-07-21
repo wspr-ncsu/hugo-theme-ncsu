@@ -14,13 +14,14 @@ disableKinds = ["taxonomy","RSS"]
 	cshort = "CSC XXX"
 	clong = "Example Lecture"
 	cfull = "CSC XXX - Example Lecture"
+	cdesc = "Some longer course description"
 	time = "Monday, Wednesday 6:00pm -- 7:15pm"
 	location = "1226 Engineering Building 2 (EB 2)"
 	# Theme specific setting
 	showToC = true # ToC on the right
 	showSidebar = true # Sidebar on the left
 	showWIP	= true # 'Work in progress' message on every page
-	showFooter	= true  # Site footer with some lecture info
+	showFooter = true  # Site footer with some lecture info
 
 # Pull in some data from git
 enableGitInfo = true
