@@ -47,9 +47,11 @@
 					<div id="markdown">
                         {{- block "main" . }}{{- end }}
                     </div>
+					{{ if default true (default .Site.Params.showFooter .Params.showFooter) }}
                     <footer id="footer">
                         {{- partial "footer.html" . -}}
                     </footer>
+					{{ end }}
                 </main>
             </div>
         </div>

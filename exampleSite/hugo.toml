@@ -17,7 +17,7 @@ disableKinds = ["taxonomy","RSS"]
 	showToC = true # ToC on the right
 	showSidebar = false # Sidebar on the left
 	showWIP	= true # 'Work in progress' message on every page
-	showFooter	= true  # Site footer with some lecture info 
+	showFooter	= true  # Site footer with some lecture info
 
 # Pull in some data from git
 enableGitInfo = true
