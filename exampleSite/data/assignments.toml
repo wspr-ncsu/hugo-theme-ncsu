@@ -17,3 +17,13 @@ url 		= "/schedule#a2"
 page		= "/assignments/a2"
 date 		= "2030-01-26T23:59:59"
 color 		= "bg-primary"
+
+[a3]
+id 			= "3"
+type		= "weekly"
+name	 	= "Assignment 03"
+short_name 	= "A03"
+url 		= "/schedule#a3"
+page		= "/assignments/a3"
+date 		= "2028-08-26T23:59:59"
+color 		= "bg-primary"

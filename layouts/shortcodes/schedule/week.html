@@ -1,0 +1,13 @@
+{{/* Week Shortcode */}}
+{{- $number := int (cond .IsNamedParams (.Get "week") (.Get 0)) -}}
+
+{{/* Print week header */}}
+## Week {{ $number }}
+
+{{ if .Page.Params.startDate -}}
+	{{- $startDate := time .Page.Params.startDate -}}
+	{{- $elapsedDays := int (mul (sub $number 1) 7) -}}
+	{{- $currentMonday := $startDate.AddDate 0 0 $elapsedDays -}}
+	{{- $currentFriday := $currentMonday.AddDate 0 0 4 -}}
+<small style="color:grey;">{{ $currentMonday.Format "Monday, 2006-01-02" }} - {{ $currentFriday.Format "Friday, 2006-01-02" }}</small>
+{{- end -}}

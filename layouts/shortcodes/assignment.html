@@ -17,8 +17,11 @@
 			{{- end -}}
 		{{- else if eq $format "countdown" -}}
 			<span id="countdown-{{ .id }}" class="countdown-timer" data-date="{{ .date }}"></span>
-			<script src="/js/moment.min.js"></script>
-			<script src="/js/moment-timezone-with-data-10-year-range.min.js"></script>
+			{{- if not (.Page.Scratch.Get "moment-included") -}}
+				{{- .Page.Scratch.Set "moment-included" true -}}
+				<script src="/js/moment.min.js"></script>
+				<script src="/js/moment-timezone-with-data-10-year-range.min.js"></script>
+			{{- end -}}
 			<script type="text/javascript">
 				document.addEventListener("DOMContentLoaded", function() {
 					const timer = document.getElementById('countdown-{{ .id }}');

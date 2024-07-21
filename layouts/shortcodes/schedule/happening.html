@@ -1,0 +1,70 @@
+{{- $weekNumber := cond .IsNamedParams (.Get "week") (int (.Get 0)) -}}
+{{- $day := cond .IsNamedParams (.Get "day") (.Get 1) -}}
+{{- $type := cond .IsNamedParams (.Get "type") (.Get 2) -}}
+{{- $time := cond .IsNamedParams (.Get "time") (.Get 3) -}}
+
+{{- $startDate := false -}}
+{{- $currentDay := false -}}
+{{- if .Page.Params.startDate -}}
+	{{- $startDate = time .Page.Params.startDate -}}
+	{{- $elapsedDays := int (mul (sub $weekNumber 1) 7) -}}
+	{{- $currentMonday := $startDate.AddDate 0 0 $elapsedDays -}}
+	{{- $dayOffset := cond (eq $day "mon") 0 (cond (eq $day "tue") 1 (cond (eq $day "wed") 2 (cond (eq $day "thu") 3 (cond (eq $day "fri") 4 (cond (eq $day "sat") 5 (cond (eq $day "sun") 6 0)))))) -}}
+	{{- $currentDay = $currentMonday.AddDate 0 0 $dayOffset -}}
+{{- end -}}
+
+<div class="px-4">
+{{- if eq $type "deadline" -}}
+<div class="card border-danger mb-1">
+	<div class="card-body text-danger">
+		{{- if $startDate -}}
+		<span><b>{{ $currentDay.Format "Mon"}}</b> - {{ $currentDay.Format "Jan 02, 2006" }}</span>
+		{{- else -}}
+		<span><b>{{ $day | upper }}</b></span>
+		{{- end -}}
+		<span style="margin-left:.3rem; margin-right:.3rem;">|</span>
+		<span>{{ .Inner | markdownify | safeHTML }}</span>
+</div>
+</div>
+{{- else if eq $type "noclass" -}}
+<div class="card text-bg-success ml-2 mb-1">
+	<div class="card-header">
+		{{- if $startDate -}}
+		<span><b>{{ $currentDay.Format "Mon"}}</b> - {{ $currentDay.Format "Jan 02, 2006" }}</span>
+		{{- else -}}
+		<span><b>{{ $day | upper }}</b></span>
+		{{- end -}}
+		<span style="margin-left:.3rem; margin-right:.3rem;">|</span>
+		<span>{{ .Inner | markdownify | safeHTML }}</span>
+</div>
+</div>
+{{- else if eq $type "exam" -}}
+<div class="card text-bg-danger ml-2 mt-2 mb-2">
+	<div class="card-header d-flex flex-row justify-content-between">
+		{{- if $startDate -}}
+		<div><b>{{ $currentDay.Format "Mon"}}</b> - {{ $currentDay.Format "Jan 02, 2006" }}</div>
+		{{- else -}}
+		<span><b>{{ $day | upper }}</b></span>
+		{{- end -}}
+		{{- if $time -}}
+		<div class="fw-bold">{{- $time -}}</div>
+		{{- end -}}
+</div>
+	<div class="card-body">
+{{ .Inner | markdownify | safeHTML }}
+</div>
+</div>
+{{- else -}}
+<div class="card ml-2 mb-1">
+	<div class="card-header">
+		{{- if $startDate -}}
+			<span class="text-body-secondary"><b>{{ $currentDay.Format "Mon"}}</b> - {{ $currentDay.Format "Jan 02, 2006" }}</span>
+		{{- else -}}
+			<span class="text-body-secondary"><b>{{ $day | upper }}</b></span>
+		{{- end -}}
+		<span style="margin-left:.3rem; margin-right:.3rem;">|</span>
+		<span>{{ .Inner | markdownify | safeHTML }}</span>
+</div>
+</div>
+{{- end -}}
+</div>
