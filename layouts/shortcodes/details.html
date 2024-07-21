@@ -1,0 +1,10 @@
+<details {{ if or (.Get "open") (in .Params "open") }}open{{ end }} class="card mb-2">
+	<summary class="card-header">
+		{{ cond .IsNamedParams (.Get "title") (.Get 0) }}
+	</summary>
+	<div class="card-body">
+		<div class="markdown-inner">
+			{{ .Inner | markdownify }}
+		</div>
+	</div>
+</details>
