@@ -1,0 +1,55 @@
+{{- $assignment := cond .IsNamedParams (.Get "id") (.Get 0) -}}
+{{- $format := cond .IsNamedParams (.Get "format") (.Get 1) -}}
+
+{{- range (sort $.Site.Data.assignments "id" "desc") -}}
+	{{- if eq .id $assignment -}}
+		{{- if eq $format "date" -}}
+			<span>{{ time.Format "Mon, Jan 2 - 15:04 PM" .date }} {{ .time }}</span>
+		{{- else if eq $format "badge" -}}
+			{{- $color := "bg-secondary" -}}
+			{{- if isset . "color" -}}
+				{{- $color = .color -}}
+			{{- end -}}
+			{{- if isset . "url" -}}
+				<a class="badge {{ $color }}" href="{{ .url }}">{{- .short_name -}}</a>
+			{{- else -}}
+				<span class="badge {{ $color }}" >{{- .short_name -}}</span>
+			{{- end -}}
+		{{- else if eq $format "countdown" -}}
+			<span id="countdown-{{ .id }}" class="countdown-timer" data-date="{{ .date }}"></span>
+			<script src="/js/moment.min.js"></script>
+			<script src="/js/moment-timezone-with-data-10-year-range.min.js"></script>
+			<script type="text/javascript">
+				document.addEventListener("DOMContentLoaded", function() {
+					const timer = document.getElementById('countdown-{{ .id }}');
+					const targetDate = moment.tz(timer.getAttribute('data-date'), "America/New_York");
+
+					function updateCountdown() {
+						const now = moment();
+						const duration = moment.duration(targetDate.diff(now));
+
+						const days = Math.floor(duration.asDays());
+						const hours = duration.hours();
+						const minutes = duration.minutes();
+						const seconds = duration.seconds();
+
+						if (duration.asMilliseconds() > 0) {
+							timer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+						} else {
+							timer.innerHTML = "Expired";
+						}
+					}
+
+					updateCountdown();
+					setInterval(updateCountdown, 1000);
+				});
+			</script>
+		{{- else -}}
+			{{- if isset . "page" -}}
+				<span><a class href="{{ .page }}">{{- .name -}}</a></span>
+			{{- else -}}
+				<span>{{- .name -}}</span>
+			{{- end -}}
+		{{- end -}}
+	{{- end -}}
+{{- end -}}

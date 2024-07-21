@@ -1,0 +1,19 @@
+[a1]
+id 			= "1"
+type		= "weekly"
+name	 	= "Assignment 01"
+short_name 	= "A01"
+url 		= "/schedule#a1"
+page		= "/assignments/a1"
+date 		= "2024-07-21T13:59:59"
+color		= "bg-secondary"
+
+[a2]
+id 			= "2"
+type		= "weekly"
+name	 	= "Assignment 02"
+short_name 	= "A02"
+url 		= "/schedule#a2"
+page		= "/assignments/a2"
+date 		= "2030-01-26T23:59:59"
+color 		= "bg-primary"

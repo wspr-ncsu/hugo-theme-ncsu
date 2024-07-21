@@ -151,29 +151,6 @@ figure {
       display: initial;
     }
   }
-  h1, .h1 {
-    font-size: 2.5rem;
-  }
-
-  h2, .h2 {
-    font-size: 2rem;
-  }
-
-  h3, .h3 {
-    font-size: 1.75rem;
-  }
-
-  h4, .h4 {
-    font-size: 1.5rem;
-  }
-
-  h5, .h5 {
-    font-size: 1.25rem;
-  }
-
-  h6, .h6 {
-    font-size: 1rem;
-  }
 
   // Hide empty table headers
   table tr th:empty {
@@ -194,6 +171,8 @@ figure {
   th {
     text-align: inherit;
   }
+
+  // Add blockquote styling
   blockquote {
     margin: 1em 0;
     padding: .5em 1em .5em .75em; //to keep total left space 16dp
@@ -206,15 +185,5 @@ figure {
     :last-child {
       margin-bottom: 0;
     }
-  }
-  pre,code,kbd,samp {
-    font-family: $font-family-monospace;
-    font-size: 1em;
-  }
-  pre {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    overflow: auto;
-    -ms-overflow-style: scrollbar;
   }
 }

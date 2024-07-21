@@ -26,6 +26,19 @@ $cyan:    #0dcaf0 !default;
 // scss-docs-end color-variables
 
 :root {
+  // --blue: #427e93;
+  // --indigo: #4156a1;
+  // --purple: #6f42c1;
+  // --pink: #e83e8c;
+  // --red: #cc0000;
+  // --orange: #d14905;
+  // --yellow: #fac800;
+  // --green: #6F7D1C;
+  // --teal: #20c997;
+  // --cyan: #599baf;
+  // --white: #ffffff;
+  // --gray: #666666;
+  --gray-dark: #333333;
   --brand-red: #cc0000;
   --brand-reynolds: #990000;
   --brand-indigo: #4156a1;
@@ -47,44 +60,34 @@ $light:         $gray-100 !default;
 $dark:          $gray-900 !default;
 // scss-docs-end theme-color-variables
 
-
-:root {
-  --blue: #427e93;
-  --indigo: #4156a1;
-  --purple: #6f42c1;
-  --pink: #e83e8c;
-  --red: #cc0000;
-  --orange: #d14905;
-  --yellow: #fac800;
-  --green: #6F7D1C;
-  --teal: #20c997;
-  --cyan: #599baf;
-  --white: #ffffff;
-  --gray: #666666;
-  --gray-dark: #333333;
-  --brand-red: #cc0000;
-  --brand-reynolds: #990000;
-  --brand-indigo: #4156a1;
-  --brand-blue: #427e93;
-  --brand-green: #6F7D1C;
-  --brand-yellow: #fac800;
-  --brand-orange: #d14905;
-  --brand-aqua: #008473;
-  --primary: #cc0000;
-  --secondary: #666666;
-  --success: #8d9e2b;
-  --info: #599baf;
-  --warning: #f8da3e;
-  --danger: #e16408;
-  --light: #e5e5e5;
-  --dark: #333333;
-  --breakpoint-xs: 0;
-  --breakpoint-sm: 576px;
-  --breakpoint-md: 768px;
-  --breakpoint-lg: 992px;
-  --breakpoint-xl: 1200px;
-}
-
 $font-family-sans-serif: Inter, Roboto, system-ui, sans-serif !default;
 $font-family-serif: serif !default;
 $font-family-monospace: "Source Code Pro", ui-monospace, monospace !default;
+
+// Options
+//
+// Quickly modify global styling by enabling or disabling optional features.
+
+$enable-caret:                true !default;
+$enable-rounded:              true !default;
+$enable-shadows:              false !default;
+$enable-gradients:            false !default;
+$enable-transitions:          true !default;
+$enable-reduced-motion:       true !default;
+$enable-smooth-scroll:        true !default;
+$enable-grid-classes:         true !default;
+$enable-container-classes:    true !default;
+$enable-cssgrid:              false !default;
+$enable-button-pointers:      true !default;
+$enable-rfs:                  true !default;
+$enable-validation-icons:     true !default;
+$enable-negative-margins:     false !default;
+$enable-deprecation-messages: true !default;
+$enable-important-utilities:  true !default;
+
+$enable-dark-mode:            true !default;
+$color-mode-type:             data !default; // `data` or `media-query`
+
+// Prefix for :root CSS variables
+$variable-prefix:             bs- !default; // Deprecated in v5.2.0 for the shorter `$prefix`
+$prefix:                      $variable-prefix !default;
