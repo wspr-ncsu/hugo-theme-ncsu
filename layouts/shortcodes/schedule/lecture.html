@@ -26,11 +26,16 @@
 <div class="px-4">
 <div class="card ml-2 mt-2 mb-2">
 	<div class="card-header d-flex flex-row justify-content-between">
+		<div>
 		{{- if $startDate}}
-		<div class="text-body-secondary"><b>{{ $currentDay.Format "Mon"}}</b> - {{ $currentDay.Format "Jan 02, 2006" }}</div>
+		<span class="text-body-secondary"><b>{{ $currentDay.Format "Mon"}}</b> - {{ $currentDay.Format "Jan 02, 2006" }}</span>
 		{{- else -}}
-		<div class="text-body-secondary"><b>{{ $day | upper }}</b></div>
+		<span class="text-body-secondary"><b>{{ $day | upper }}</b></span>
 		{{- end -}}
+		{{- if .label -}}
+		<span> - <a class="link-secondary" id="{{- .label -}}" href="#{{.label}}">#{{.label}}</a></span>
+		{{- end -}}
+		</div>
 		{{- if $recorded -}}
 		<div class="text-body-secondary">Pre-recorded</div>
 		{{- else -}}
@@ -40,7 +45,11 @@
 		{{- end -}}
 	</div>
 	<div class="card-body">
+		{{- if $recorded -}}
+		<div class="h5"><span class="text-body-secondary">Lecture {{ $number -}}:</span> <b>{{ .title -}}</b><span class="text-body-secondary small"> (Pre-recorded)</span></div>
+		{{- else -}}
 		<div class="h5"><span class="text-body-secondary">Lecture {{ $number -}}:</span> <b>{{ .title -}}</b></div>
+		{{- end -}}
 		{{- if $recorded -}}
 		<div>
 			<b>📹 Pre-recorded lecture</b>, no in-person class.
@@ -48,22 +57,22 @@
 		{{- end -}}
 		{{- if .description }}
 		<div class="small text-secondary">
-			{{ .description }}
+			{{ .description | markdownify }}
 		</div>
 		{{- end -}}
 		{{- if .note }}
 		<div>
-			{{ .note }}
+			{{ .note | markdownify }}
 		</div>
 		{{- end -}}
 		{{- if .slides }}
-		<a href="{{- .slides -}}">Slides</a>
-		{{- if .recording -}}
-		, <a href="{{- .recording -}}">Recording</a>
+			<a href="{{- .slides -}}">Slides</a>
+			{{- if .recording -}}
+				, <a href="{{- .recording -}}">Recording</a>
+			{{- end -}}
 		{{- end -}}
-		{{- end -}}
-		{{- end -}}
-		{{- end -}}
+	{{- end -}}
+{{- end -}}
 
 		{{- $resourcesMap := dict "paper" "🗎" "book" "🕮" "video" "📹" "presentation" "🖥️" "website" "🌐" "podcast" "🎧" -}}
 

@@ -5,6 +5,12 @@
 	{{- if eq .id $assignment -}}
 		{{- if eq $format "date" -}}
 			<span>{{ time.Format "Mon, Jan 2 - 15:04 PM" .date }} {{ .time }}</span>
+		{{- else if eq $format "label" -}}
+			{{- if isset . "url" -}}
+				<a class="link-secondary" id="{{- .short_name -}}" href="{{ .url }}">#{{- .short_name -}}</a>
+			{{- else -}}
+				<span class="text-bg-secondary" >#{{- .short_name -}}</span>
+			{{- end -}}
 		{{- else if eq $format "badge" -}}
 			{{- $color := "bg-secondary" -}}
 			{{- if isset . "color" -}}
