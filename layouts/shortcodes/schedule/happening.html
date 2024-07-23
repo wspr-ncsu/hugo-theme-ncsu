@@ -16,13 +16,17 @@
 <div class="px-4">
 {{- if eq $type "deadline" -}}
 <div class="card border-danger mb-1">
-	<div class="card-body text-danger">
+	<div class="card-header d-flex flex-row justify-content-between text-danger border-danger">
 		{{- if $startDate -}}
-		<span><b>{{ $currentDay.Format "Mon"}}</b> - {{ $currentDay.Format "Jan 02, 2006" }}</span>
+		<div><b>{{ $currentDay.Format "Mon"}}</b> - {{ $currentDay.Format "Jan 02, 2006" }}</div>
 		{{- else -}}
 		<span><b>{{ $day | upper }}</b></span>
 		{{- end -}}
-		<span style="margin-left:.3rem; margin-right:.3rem;">|</span>
+		{{- if $time -}}
+		<div class="fw-bold">{{- $time -}}</div>
+		{{- end -}}
+	</div>
+	<div class="card-body text-danger">
 		<span>{{ .Inner | markdownify | safeHTML }}</span>
 </div>
 </div>
@@ -49,7 +53,7 @@
 		{{- if $time -}}
 		<div class="fw-bold">{{- $time -}}</div>
 		{{- end -}}
-</div>
+	</div>
 	<div class="card-body">
 {{ .Inner | markdownify | safeHTML }}
 </div>
