@@ -21,24 +21,32 @@ First day of classes
 {{< /schedule/happening >}}
 {{< schedule/lecture 1 "mon" >}}
 {{< schedule/lecture 1 "wed" "true">}}
-
+{{< schedule/happening 2 "fri" "deadline" "11:59pm">}}
+**Deadlines**: {{< assignment "a1" "date" >}} (Raleigh time) via Gradescope:
+- {{< assignment "a1" >}} {{< assignment "a1" "label">}}
+{{< /schedule/happening >}}
 
 {{% schedule/week 2 %}}
 {{< schedule/lecture 2 "mon" >}}
 {{< schedule/lecture 2 "wed" >}}
+{{< schedule/happening 4 "fri" "deadline" "11:59pm">}}
+**Deadlines**: {{< assignment "a2" "date" >}} (Raleigh time) via Gradescope:
+- {{< assignment "a2" >}} {{< assignment "a2" "label">}}
+{{< /schedule/happening >}}
 
 {{% schedule/week "3" %}}
 {{< schedule/happening 3 "mon" "noclass" >}}
 Labor Day - **No Classes**, University Closed
 {{< /schedule/happening >}}
 {{< schedule/lecture 3 "wed" >}}
-{{< schedule/happening 3 "fri" "deadline" >}}
-**Deadline**: [Assignment 1](/#example) (11:59pm)
-{{< /schedule/happening >}}
 
 {{% schedule/week "4" %}}
 {{< schedule/lecture 4 "mon" >}}
 {{< schedule/lecture 4 "wed" >}}
+{{< schedule/happening 6 "fri" "deadline" "11:59pm" >}}
+**Deadline**: {{< assignment "a3" "date" >}} (Raleigh time) via Gradescope:
+- {{< assignment "a3" >}} {{< assignment "a3" "label">}}
+{{< /schedule/happening >}}
 
 {{% schedule/week "5" %}}
 {{< schedule/happening 5 "mon" "noclass">}}
@@ -50,49 +58,10 @@ Wellness Day - **No Classes**
 {{< schedule/lecture 5 "wed" >}}
 
 {{% schedule/week "6" %}}
-{{< schedule/lecture 6 "mon" >}}
-{{< schedule/lecture 6 "wed" >}}
-
-{{% schedule/week "7" %}}
-{{< schedule/lecture 7 "mon" >}}
-{{< schedule/lecture 7 "wed" >}}
-
-{{% schedule/week "8" %}}
-{{< schedule/happening 8 "mon" "exam" "6:00pm" >}}
-### Midterm Exam (6:00pm)
-- Some extra info
-- Link [test](#example)
+{{< schedule/happening 6 "fri" "deadline" "11:59pm" >}}
+**Deadline**: {{< assignment "a3" "date" >}} (Raleigh time) via Gradescope:
+- {{< assignment "a3" >}} {{< assignment "a3" "label">}}
 {{< /schedule/happening >}}
-{{< schedule/lecture 8 "wed" >}}
-
-{{% schedule/week "9" %}}
-{{< schedule/happening 9 "mon" "noclass">}}
-Fall Break - **No Classes**
-{{< /schedule/happening >}}
-{{< schedule/happening 9 "tue" "noclass">}}
-Fall Break - **No Classes**
-{{< /schedule/happening >}}
-{{< schedule/lecture 9 "wed" >}}
-
-{{% schedule/week "10" %}}
-{{< schedule/lecture 10 "mon" >}}
-{{< schedule/lecture 10 "wed" >}}
-
-{{% schedule/week "11" %}}
-{{< schedule/lecture 11 "mon" >}}
-{{< schedule/lecture 11 "wed" >}}
-
-{{% schedule/week "12" %}}
-{{< schedule/lecture 12 "mon" >}}
-{{< schedule/lecture 12 "wed" >}}
-
-{{% schedule/week "13" %}}
-{{< schedule/lecture 13 "mon" >}}
-{{< schedule/lecture 13 "wed" >}}
-
-{{% schedule/week "14" %}}
-{{< schedule/lecture 14 "mon" >}}
-{{< schedule/lecture 14 "wed" >}}
 
 {{% schedule/week "15" %}}
 {{< schedule/lecture 15 "mon" >}}
