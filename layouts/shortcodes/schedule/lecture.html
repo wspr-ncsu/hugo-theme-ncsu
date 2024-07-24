@@ -79,6 +79,22 @@
 		{{- range (sort $.Site.Data.lectures "id" "desc") -}}
 		{{- if eq .id $number -}}
 		<div class="list-group mt-2">
+			{{- if isset . "discussion" -}}
+			<div class="list-group-item list-group-item-light small">
+				<b>Discussion</b>:
+				<ul>
+					{{- range $key, $value := .discussion -}}
+					<li>
+						{{ index $resourcesMap $value.type }}
+						{{- if $value.authors }} {{ $value.authors }},{{ end -}}
+						{{ if $value.url }} <a href="{{ $value.url }}">{{ $value.title }}</a>{{ else }} {{ $value.title }}{{ end }}
+						{{- if $value.venue }}, {{ $value.venue }}{{ end -}}
+						{{- if $value.date }}, {{ $value.date }}.{{ end -}}
+					</li>
+					{{- end -}}
+				</ul>
+			</div>
+			{{- end -}}
 			{{- if isset . "mentioned" -}}
 			<div class="list-group-item list-group-item-light small">
 				<b>Mentioned Resources</b>:
