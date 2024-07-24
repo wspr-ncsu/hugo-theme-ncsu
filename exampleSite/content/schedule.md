@@ -7,6 +7,13 @@ lectureTime = "6:00pm-7:15pm"
 
 # Schedule
 
+This is the schedule for {{< param "clong" >}}. For another detailed overview of topics see the [syllabi page](/syllabus).
+
+**Deadlines**
+- Assignments (~ every 2 weeks): {{< assignment "a1" "badge" >}} {{< assignment "a2" "badge" >}} {{< assignment "a3" "badge" >}} {{< assignment "a4" "badge" >}} {{< assignment "a5" "badge" >}} {{< assignment "a6" "badge" >}}
+- Paper readings (~ every 2 weeks): {{< assignment "p1" "badge" >}} {{< assignment "p2" "badge" >}} {{< assignment "p3" "badge" >}} {{< assignment "p4" "badge" >}} {{< assignment "p5" "badge" >}} {{< assignment "p6" "badge" >}} {{< assignment "p7" "badge" >}} {{< assignment "p8" "badge" >}}
+- Final exam: {{< assignment "final" "badge" >}} ({{< assignment "final" "date" >}}, in `{{< assignment "final" "countdown" >}}`)
+
 
 {{% schedule/week 1 %}}
 {{< schedule/happening "1" "mon" >}}
@@ -108,9 +115,9 @@ Last day of classes
 Reading Day
 {{< /schedule/happening >}}
 {{< schedule/happening "16" "fri" "exam" "7:00pm" >}}
-### Final Exam (7:00pm -- 9:30pm)
-- Some extra info
-- Link [test](#example)
+### Final Exam (7:00pm -- 9:30pm) {#final}
+- In-person, ~60min
+- More info: {{< assignment "midterm" >}}
 {{< /schedule/happening >}}
 
 {{% schedule/week "17" %}}

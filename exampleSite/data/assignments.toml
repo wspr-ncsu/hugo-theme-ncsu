@@ -1,6 +1,5 @@
 [a1]
-id 			= "1"
-type		= "weekly"
+id 			= "a1"
 name	 	= "Assignment 01"
 short_name 	= "A01"
 url 		= "/schedule#a1"
@@ -9,8 +8,7 @@ date 		= "2024-07-21T13:59:59"
 color		= "bg-secondary"
 
 [a2]
-id 			= "2"
-type		= "weekly"
+id 			= "a2"
 name	 	= "Assignment 02"
 short_name 	= "A02"
 url 		= "/schedule#a2"
@@ -19,11 +17,19 @@ date 		= "2030-01-26T23:59:59"
 color 		= "bg-primary"
 
 [a3]
-id 			= "3"
-type		= "weekly"
+id 			= "a3"
 name	 	= "Assignment 03"
 short_name 	= "A03"
 url 		= "/schedule#a3"
 page		= "/assignments/a3"
+date 		= "2028-08-26T23:59:59"
+color 		= "bg-primary"
+
+[exam]
+id 			= "final"
+name	 	= "Final Exam"
+short_name 	= "Final"
+url 		= "/schedule#final"
+page		= "/exam"
 date 		= "2028-08-26T23:59:59"
 color 		= "bg-primary"
