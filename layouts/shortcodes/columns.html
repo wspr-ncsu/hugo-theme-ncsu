@@ -1,10 +1,22 @@
 {{ $context := . }}
+{{ $splits := split (.Get "split" | default "1/1") "/" }}
+{{ $total := 0 }}
+{{ range $splits }}
+    {{ $total = add $total (float .) }}
+{{ end }}
 <div class="container-fluid">
-	<div class="row">
-		{{ range split .Inner "<--->" }}
-		<div class="col" {{- with $context.Get "width" -}}style="flex: 1 1 {{ . -}};"{{- end -}}>
-			{{ . | markdownify }}
-		</div>
-		{{ end }}
-	</div>
+    <div class="row">
+        {{ $parts := split .Inner "<--->" }}
+        {{ range $index, $part := $parts }}
+		{{ $percentage := mul (div (float (index $splits $index)) $total) 100 }}
+        <div class="col"
+             {{- if (index $splits $index) -}}
+                style="flex: 1 1 {{ $percentage }}%;"
+             {{- else if $context.Get "width" -}}
+                style="flex: 1 1 {{ $context.Get "width" }};"
+             {{- end -}}>
+            {{ $part | markdownify }}
+        </div>
+        {{ end }}
+    </div>
 </div>
