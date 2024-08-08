@@ -1,10 +1,13 @@
 {{ $w := default "100%" (.Get 0) }}
 {{ $h := default "300" (.Get 1) }}
 {{ $r := ( .Inner | chomp) }}
-{{ $id := index (seq 999 | shuffle) 1 }}
 
-<div style="width: {{ $w }};height: {{ $h }}px;margin: 0 auto; max-width:100%;">
-	<canvas id="{{ $id }}"></canvas>
+
+{{- $number := $.Page.Scratch.Get "chartID" | default 0 | int -}}
+{{ $id := printf "chart-%d" $number }}
+
+<div style="margin: 0 auto; max-width:100%;">
+	<canvas id="{{ $id }}" width="{{$w}}" height="{{$h}}"></canvas>
 </div>
 <script type="module" src="/js/chart.umd.js"></script>
 <script type="text/javascript">
@@ -14,3 +17,6 @@
 		new Chart(ctx, options);
 	});
 </script>
+
+{{- $number = add $number 1 -}}
+{{- $.Page.Scratch.Set "chartID" $number -}}
