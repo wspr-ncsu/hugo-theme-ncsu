@@ -8,10 +8,10 @@
     <div class="row">
         {{ $parts := split .Inner "<--->" }}
         {{ range $index, $part := $parts }}
-		{{ $percentage := mul (div (float (index $splits $index)) $total) 100 }}
+		{{ $percentage := mul (div (float (index $splits $index)) $total) 100 | int }}
         <div class="col"
              {{- if (index $splits $index) -}}
-                style="flex: 1 1 {{ $percentage }}%;"
+                style="flex: 1 0 {{ $percentage }}%;"
              {{- else if $context.Get "width" -}}
                 style="flex: 1 1 {{ $context.Get "width" }};"
              {{- end -}}>
