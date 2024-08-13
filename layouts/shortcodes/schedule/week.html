@@ -1,8 +1,18 @@
 {{/* Week Shortcode */}}
-{{- $number := int (cond .IsNamedParams (.Get "week") (.Get 0)) -}}
+{{- $param := cond (.IsNamedParams) (.Get "week") (cond (gt (len .Params) 0) (.Get 0) "") -}}
+{{- $number := $.Page.Scratch.Get "currentWeek" | default 0 | int -}}
+{{- if and (ne $param "") (ge (len (printf "%d" $param)) 1) (ge $param "0") -}}
+    {{- $number = $param | int -}}
+{{- else -}}
+    {{- $number = add $number 1 -}}
+{{- end -}}
+
+{{/* Get optional title parameter (either as named parameter or second positional parameter) */}}
+{{- $title := cond (.IsNamedParams) (.Get "title") (cond (gt (len .Params) 1) (.Get 1) "") -}}
+{{- $titleText := cond (eq $title "") (printf "Week %d" $number) (printf "Week %d - %s" $number $title) -}}
 
 {{/* Print week header */}}
-## Week {{ $number }}
+## {{ $titleText }}
 
 {{ if .Page.Params.startDate -}}
 	{{- $startDate := time .Page.Params.startDate -}}
@@ -11,3 +21,5 @@
 	{{- $currentFriday := $currentMonday.AddDate 0 0 4 -}}
 <small style="color:grey;">{{ $currentMonday.Format "Monday, 2006-01-02" }} - {{ $currentFriday.Format "Friday, 2006-01-02" }}</small>
 {{- end -}}
+
+{{- $.Page.Scratch.Set "currentWeek" $number -}}

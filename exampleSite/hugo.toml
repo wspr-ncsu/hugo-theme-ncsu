@@ -2,8 +2,6 @@ baseURL = "" # Set by deploy script
 languageCode = "en-us"
 title = "CSC XXX - Example Lecture"
 theme = "hugo-theme-ncsu"
-canonifyURLs = true
-disableKinds = ["taxonomy","RSS"]
 
 [params]
 	# Theme specific setting
@@ -50,11 +48,11 @@ sectionPagesMenu = "main"
 	# 	name = "Readings"
 	# 	URL = "/readings/"
 	# 	weight = 4
-	[[menu.main]]
-		identifier = "syllabus"
-		name = "Syllabus"
-		URL = "/syllabus/"
-		weight = 5
+	# [[menu.main]]
+	# 	identifier = "syllabus"
+	# 	name = "Syllabus"
+	# 	URL = "/syllabus/"
+	# 	weight = 5
 
 [markup]
 	defaultMarkdownHandler = "goldmark"

@@ -1,7 +1,7 @@
-{{- $weekNumber := cond .IsNamedParams (.Get "week") (int (.Get 0)) -}}
-{{- $day := cond .IsNamedParams (.Get "day") (.Get 1) -}}
-{{- $type := cond .IsNamedParams (.Get "type") (.Get 2) -}}
-{{- $time := cond .IsNamedParams (.Get "time") (.Get 3) -}}
+{{- $weekNumber := $.Page.Scratch.Get "currentWeek" | default 1 | int -}}
+{{- $day := cond .IsNamedParams (.Get "day") (.Get 0) -}}
+{{- $type := cond .IsNamedParams (.Get "type") (.Get 1) -}}
+{{- $time := cond .IsNamedParams (.Get "time") (.Get 2) -}}
 
 {{- $startDate := false -}}
 {{- $currentDay := false -}}

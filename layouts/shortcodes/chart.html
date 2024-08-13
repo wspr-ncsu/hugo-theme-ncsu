@@ -6,7 +6,7 @@
 {{- $number := $.Page.Scratch.Get "chartID" | default 0 | int -}}
 {{ $id := printf "chart-%d" $number }}
 
-<div style="margin: 0 auto; max-width:100%;">
+<div style="margin: 0 auto;">
 	<canvas id="{{ $id }}" width="{{$w}}" height="{{$h}}"></canvas>
 </div>
 <script type="module" src="/js/chart.umd.js"></script>

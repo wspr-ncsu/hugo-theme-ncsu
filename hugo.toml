@@ -5,10 +5,14 @@ baseURL = "" # Set by deploy script
 languageCode = "en-us"
 title = "CSC XXX - Example Lecture"
 theme = "hugo-theme-ncsu"
-canonifyURLs = true
-disableKinds = ["taxonomy","RSS"]
 
 [params]
+	# Theme specific setting
+	showToC = true # ToC on the right
+	showSidebar = true # Sidebar on the left
+	showWIP	= true # 'Work in progress' message on every page
+	showFooter = true  # Site footer with some lecture info
+	# Course variables
 	iteration = "Fall 2024"
 	year = "2024"
 	cshort = "CSC XXX"
@@ -17,11 +21,6 @@ disableKinds = ["taxonomy","RSS"]
 	cdesc = "Some longer course description"
 	time = "Monday, Wednesday 6:00pm -- 7:15pm"
 	location = "1226 Engineering Building 2 (EB 2)"
-	# Theme specific setting
-	showToC = true # ToC on the right
-	showSidebar = true # Sidebar on the left
-	showWIP	= true # 'Work in progress' message on every page
-	showFooter = true  # Site footer with some lecture info
 
 # Pull in some data from git
 enableGitInfo = true

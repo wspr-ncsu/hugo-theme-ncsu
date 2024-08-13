@@ -1,134 +1,143 @@
-{{- $weekNumber := cond .IsNamedParams (int (.Get "week")) (int (.Get 0)) -}}
-{{- $day := cond .IsNamedParams (.Get "day") (.Get 1) -}}
+{{- $weekNumber := $.Page.Scratch.Get "currentWeek" | default 1 | int -}}
+{{- $day := cond .IsNamedParams (.Get "day") (.Get 0) -}}
+{{- $lectureID := cond .IsNamedParams (.Get "id") (.Get 1) -}}
 {{- $recorded := cond .IsNamedParams (.Get "recorded") (.Get 2) -}}
 
-{{/* Initialize or increment the lecture counter */}}
-{{- $number := .Page.Scratch.Get "lectureCounter" | default 0 | add 1 -}}
-{{- .Page.Scratch.Set "lectureCounter" $number -}}
+{{/* Initialize or increment the lecture counter for display in the title */}}
+{{- $lectureCounter := $.Page.Scratch.Get "lectureCounter" | default 0 | add 1 -}}
+{{- $.Page.Scratch.Set "lectureCounter" $lectureCounter -}}
 
 {{- $startDate := false -}}
 {{- $currentDay := false -}}
 {{- if .Page.Params.startDate }}
-	{{- $startDate = time .Page.Params.startDate -}}
-	{{- $elapsedDays := int (mul (sub $weekNumber 1) 7) -}}
-	{{- $currentMonday := $startDate.AddDate 0 0 $elapsedDays -}}
-	{{- $dayOffset := cond (eq $day "mon") 0 (cond (eq $day "tue") 1 (cond (eq $day "wed") 2 (cond (eq $day "thu") 3 (cond (eq $day "fri") 4 (cond (eq $day "sat") 5 (cond (eq $day "sun") 6 0)))))) -}}
-	{{- $currentDay = $currentMonday.AddDate 0 0 $dayOffset -}}
+{{- $startDate = time .Page.Params.startDate -}}
+{{- $elapsedDays := int (mul (sub $weekNumber 1) 7) -}}
+{{- $currentMonday := $startDate.AddDate 0 0 $elapsedDays -}}
+{{- $dayOffset := cond (eq $day "mon") 0 (cond (eq $day "tue") 1 (cond (eq $day "wed") 2 (cond (eq $day "thu") 3 (cond (eq $day "fri") 4 (cond (eq $day "sat") 5 (cond (eq $day "sun") 6 0)))))) -}}
+{{- $currentDay = $currentMonday.AddDate 0 0 $dayOffset -}}
 {{- end -}}
 
 {{- $lectureTime := false -}}
 {{- if .Page.Params.lectureTime -}}
-	{{- $lectureTime = .Page.Params.lectureTime -}}
+{{- $lectureTime = .Page.Params.lectureTime -}}
 {{- end -}}
 
-{{- range (sort $.Site.Data.lectures "id" "desc") -}}
-{{- if eq .id $number -}}
+{{- range $.Site.Data.lectures -}}
+{{- if eq .id $lectureID -}}
 <div class="px-4">
-<div class="card ml-2 mt-2 mb-2">
-	<div class="card-header d-flex flex-row justify-content-between">
-		<div>
-		{{- if $startDate}}
-		<span class="text-body-secondary"><b>{{ $currentDay.Format "Mon"}}</b> - {{ $currentDay.Format "Jan 02, 2006" }}</span>
-		{{- else -}}
-		<span class="text-body-secondary"><b>{{ $day | upper }}</b></span>
-		{{- end -}}
-		{{- if .label -}}
-		<span> - <a class="link-secondary" id="{{- .label -}}" href="#{{.label}}">#{{.label}}</a></span>
-		{{- end -}}
+	<div class="card ml-2 mt-2 mb-2">
+		<div class="card-header d-flex flex-row justify-content-between">
+			<div>
+				{{- if $startDate}}
+				<span class="text-body-secondary"><b>{{ $currentDay.Format "Mon"}}</b> - {{ $currentDay.Format "Jan 02, 2006" }}</span>
+				{{- else -}}
+				<span class="text-body-secondary"><b>{{ $day | upper }}</b></span>
+				{{- end -}}
+				{{- if .label -}}
+				<span> - <a class="link-secondary" id="{{- .label -}}" href="#{{.label}}">#{{.label}}</a></span>
+				{{- else if .id -}}
+				<span> - <a class="link-secondary" id="{{- .id -}}" href="#{{.id}}">#{{.id}}</a></span>
+				{{- end -}}
+			</div>
+			{{- if $recorded -}}
+			<div class="text-body-secondary">Pre-recorded</div>
+			{{- else if .time}}
+			<div class="text-body-secondary">{{- .time -}}</div>
+			{{- else if $lectureTime}}
+			<div class="text-body-secondary">{{- $lectureTime -}}</div>
+			{{- end -}}
 		</div>
-		{{- if $recorded -}}
-		<div class="text-body-secondary">Pre-recorded</div>
-		{{- else -}}
-		{{- if $lectureTime}}
-		<div class="text-body-secondary">{{- $lectureTime -}}</div>
-		{{- end -}}
-		{{- end -}}
-	</div>
-	<div class="card-body">
-		{{- if $recorded -}}
-		<div class="h5"><span class="text-body-secondary">Lecture {{ $number -}}:</span> <b>{{ .title -}}</b><span class="text-body-secondary small"> (Pre-recorded)</span></div>
-		{{- else -}}
-		<div class="h5"><span class="text-body-secondary">Lecture {{ $number -}}:</span> <b>{{ .title -}}</b></div>
-		{{- end -}}
-		{{- if $recorded -}}
-		<div>
-			<b>📹 Pre-recorded lecture</b>, no in-person class.
-		</div>
-		{{- end -}}
-		{{- if .description }}
-		<div class="small text-secondary">
-			{{ .description | markdownify }}
-		</div>
-		{{- end -}}
-		{{- if .note }}
-		<div>
-			{{ .note | markdownify }}
-		</div>
-		{{- end -}}
-		{{- if .slides }}
+		<div class="card-body">
+			<div class="h5">
+				<span class="text-body-secondary">
+					{{- if .short -}}
+					{{- .short -}}
+					{{- else -}}
+					Lecture {{ $lectureCounter }}:
+					{{- end -}}
+				</span> <b>{{ .title -}}</b>
+			{{- if $recorded -}}
+			<span class="text-body-secondary"> (Pre-recorded)</span>
+			{{- end -}}
+			</div>
+			{{- if $recorded -}}
+			<div>
+				<b>📹 Pre-recorded lecture</b>, no in-person class.
+			</div>
+			{{- end -}}
+			{{- if .description }}
+			<div class="small text-secondary">
+				{{ .description | markdownify }}
+			</div>
+			{{- end -}}
+			{{- if .note }}
+			<div>
+				{{ .note | markdownify }}
+			</div>
+			{{- end -}}
+			{{- if .slides }}
 			<a href="{{- .slides -}}">Slides</a>
 			{{- if .recording -}}
-				, <a href="{{- .recording -}}">Recording</a>
+			, <a href="{{- .recording -}}">Recording</a>
 			{{- end -}}
-		{{- end -}}
-	{{- end -}}
-{{- end -}}
+			{{- end -}}
+			{{- $resourcesMap := dict "paper" "🗎" "book" "🕮" "video" "📹" "presentation" "🖥️" "website" "🌐" "podcast" "🎧" -}}
 
-		{{- $resourcesMap := dict "paper" "🗎" "book" "🕮" "video" "📹" "presentation" "🖥️" "website" "🌐" "podcast" "🎧" -}}
-
-		{{- range (sort $.Site.Data.lectures "id" "desc") -}}
-		{{- if eq .id $number -}}
-		<div class="list-group mt-2">
-			{{- if isset . "discussion" -}}
-			<div class="list-group-item list-group-item-light small">
-				<b>Discussion</b>:
-				<ul>
-					{{- range $key, $value := .discussion -}}
-					<li>
-						{{ index $resourcesMap $value.type }}
-						{{- if $value.authors }} {{ $value.authors }},{{ end -}}
-						{{ if $value.url }} <a href="{{ $value.url }}">{{ $value.title }}</a>{{ else }} {{ $value.title }}{{ end }}
-						{{- if $value.venue }}, {{ $value.venue }}{{ end -}}
-						{{- if $value.date }}, {{ $value.date }}.{{ end -}}
-					</li>
-					{{- end -}}
-				</ul>
+			{{- range (sort $.Site.Data.lectures "id" "desc") -}}
+			{{- if eq .id $lectureID -}}
+			<div class="list-group mt-2">
+				{{- if isset . "discussion" -}}
+				<div class="list-group-item list-group-item-light small">
+					<b>Discussion</b>:
+					<ul>
+						{{- range $key, $value := .discussion -}}
+						<li>
+							{{ index $resourcesMap $value.type }}
+							{{- if $value.authors }} {{ $value.authors }},{{ end -}}
+							{{ if $value.url }} <a href="{{ $value.url }}">{{ $value.title }}</a>{{ else }} {{ $value.title }}{{ end }}
+							{{- if $value.venue }}, {{ $value.venue }}{{ end -}}
+							{{- if $value.date }}, {{ $value.date }}.{{ end -}}
+						</li>
+						{{- end -}}
+					</ul>
+				</div>
+				{{- end -}}
+				{{- if isset . "mentioned" -}}
+				<div class="list-group-item list-group-item-light small">
+					<b>Mentioned Resources</b>:
+					<ul>
+						{{- range $key, $value := .mentioned -}}
+						<li>
+							{{ index $resourcesMap $value.type }}
+							{{- if $value.authors }} {{ $value.authors }},{{ end -}}
+							{{ if $value.url }} <a href="{{ $value.url }}">{{ $value.title }}</a>{{ else }} {{ $value.title }}{{ end }}
+							{{- if $value.venue }}, {{ $value.venue }}{{ end -}}
+							{{- if $value.date }}, {{ $value.date }}.{{ end -}}
+						</li>
+						{{- end -}}
+					</ul>
+				</div>
+				{{- end -}}
+				{{- if isset . "additional" -}}
+				<div class="list-group-item list-group-item-light small"><b>Additional Material</b>:
+					<ul>
+						{{- range $key, $value := .additional -}}
+						<li>
+							{{ index $resourcesMap $value.type }}
+							{{- if $value.authors }} {{ $value.authors }},{{ end -}}
+							{{ if $value.url }} <a href="{{ $value.url }}">{{ $value.title }}</a>{{ else }} {{ $value.title }}{{ end }}
+							{{- if $value.venue }}, {{ $value.venue }}{{ end -}}
+							{{- if $value.date }}, {{ $value.date }}.{{ end }}
+						</li>
+						{{- end -}}
+					</ul>
+				</div>
+				{{- end -}}
 			</div>
-			{{- end -}}
-			{{- if isset . "mentioned" -}}
-			<div class="list-group-item list-group-item-light small">
-				<b>Mentioned Resources</b>:
-				<ul>
-					{{- range $key, $value := .mentioned -}}
-					<li>
-						{{ index $resourcesMap $value.type }}
-						{{- if $value.authors }} {{ $value.authors }},{{ end -}}
-						{{ if $value.url }} <a href="{{ $value.url }}">{{ $value.title }}</a>{{ else }} {{ $value.title }}{{ end }}
-						{{- if $value.venue }}, {{ $value.venue }}{{ end -}}
-						{{- if $value.date }}, {{ $value.date }}.{{ end -}}
-					</li>
-					{{- end -}}
-				</ul>
-			</div>
-			{{- end -}}
-			{{- if isset . "additional" -}}
-			<div class="list-group-item list-group-item-light small"><b>Additional Material</b>:
-				<ul>
-					{{- range $key, $value := .additional -}}
-					<li>
-						{{ index $resourcesMap $value.type }}
-						{{- if $value.authors }} {{ $value.authors }},{{ end -}}
-						{{ if $value.url }} <a href="{{ $value.url }}">{{ $value.title }}</a>{{ else }} {{ $value.title }}{{ end }}
-						{{- if $value.venue }}, {{ $value.venue }}{{ end -}}
-						{{- if $value.date }}, {{ $value.date }}.{{ end }}
-					</li>
-					{{- end -}}
-				</ul>
-			</div>
-			{{- end -}}
 		</div>
+		{{- end -}}
+		{{- end -}}
 	</div>
-</div>
 </div>
 {{- end -}}
 {{- end -}}

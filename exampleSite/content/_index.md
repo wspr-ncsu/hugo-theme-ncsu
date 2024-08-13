@@ -12,15 +12,19 @@ Example / documentation page for the Bootstrap 5 version of the unofficial `hugo
 
 ## Config
 
+General config options for hugo are listed here: https://gohugo.io/getting-started/configuration/
+
 ```toml
 baseURL = "" # Set by deploy script
 languageCode = "en-us"
 title = "NCSU Theme Documentation"
 theme = "hugo-theme-ncsu"
-canonifyURLs = true
-disableKinds = ["taxonomy","RSS"]
 ```
+
 - `baseURL`: Base URL for the site, (often?) set by deploy platform. Affects how relative links are handled (and might cause broken CSS / JS if not set correctly). Needs to be set to base URL of course website when manually deploying the html, e.g., `baseURL = "courseXX.example.org"`
+- `languageCode`: Displayed in the website header as `lang` attribute, likely not very relevant except for search engines.
+- `title`: Default website title displayed in the tab and search engines if no specific page title is set.
+- `theme`: Name of theme to use from the `themes` folder (this theme).
 
 ### Parameters
 
@@ -31,7 +35,7 @@ disableKinds = ["taxonomy","RSS"]
 	showSidebar = true # Sidebar on the left
 	showWIP	= true # 'Work in progress' message on every page
 	showFooter = true  # Site footer with some lecture info
-	# Course variables 
+	# Course variables
 	iteration = "Fall 2024"
 	year = "2024"
 	cshort = "CSC XXX"
@@ -52,12 +56,42 @@ Can be overwritten for individual pages in their front matter.
 - `showWIP = true`: Show 'work in progress' message at top of every page. Content generated from `/layouts/partials/wip.html`.
 - `showFooter = true`: Site footer with some lecture info. Content generated from `/layouts/partials/footer.html`.
 
+
+#### Show Sidebar
+
+Display left sidebar if `showSidebar = true`.
+Set in a `/layouts/partials/sidebar.html` file.
+
+#### Show Table of Contents
+
+Display right table of content if `showToC = true`.
+Auto-generated from markdown headings, included levels can be modified in `hugo.toml`.
+
+#### Show WIP
+
+Display following info box towards the top off every page if `showWIP = true`:
+
+<div class="alert alert-warning d-flex align-items-center" role="alert">
+	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+		<path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+	</svg>
+	<span>
+		<b>Work in Progress</b>: Note that this website is for an upcoming course and features including but not limited to assignments, dates and times, or session topics and order are generally subject to change.
+	</span>
+</div>
+
+Can be overwitten with a `/layouts/partials/wip.html` file.
+
+#### Show Footer
+
+Display footer at bottom of each page if `showFooter = true`.
+Generated from some of the course variables, can be overwritten woth a `/layouts/partials/footer.html` file.
+
 #### Course Variables
 
 Course-specific variables.
-- Use in any html file in the form of `{{ .Site.Params.cshort }}`
-- Use in any markdown file with the param shortcode `{{</* param "cshort" */>}}` 
-
+- Display in html file in the form of `{{ .Site.Params.cshort }}`
+- Display in markdown file with the param shortcode `{{</* param "cshort" */>}}`
 
 ### Menu
 
@@ -116,11 +150,12 @@ With parameter: `alert-info`
 ### Assignment
 
 Assignment shortcode with multiple displays of assignment data from `/data/assignments.toml`.
+Real-world examples on the [assignments](/assignments) page.
+
 Example data entry:
 ```toml
 [a1]
-id 			= "1"
-type		= "weekly"
+id 			= "a1"
 name	 	= "Assignment 01"
 short_name 	= "A01"
 url 		= "/schedule#a1"
@@ -137,36 +172,36 @@ Shortcode parameters:
 #### Default
 Without any type just renders assignment title with link to assignment `page` if provided:
 ```tpl
-{{</* assignment "1" */>}}
+{{</* assignment "a1" */>}}
 ```
-{{< assignment "1" >}}
+{{< assignment "a1" >}}
 
 #### badge
 type=`badge` renders as badge with link to assignment `url` if provided.
     Different badge color optionally set by a `color` variable in the data file. Color options follow the Bootstrap 5 badge format, e.g., `bg-primary`, `bg-info`, etc.
 ```tpl
-{{</* assignment "1" "badge" */>}}
-{{</* assignment "2" "badge" */>}}
+{{</* assignment "a1" "badge" */>}}
+{{</* assignment "a2" "badge" */>}}
 ```
-{{< assignment "1" "badge" >}} <br>
-{{< assignment "2" "badge" >}}
+{{< assignment "a1" "badge" >}} <br>
+{{< assignment "a2" "badge" >}}
 
 #### date
 type=`date` renders due date and time:
 ```tpl
-{{</* assignment "1" "date" */>}}
+{{</* assignment "a1" "date" */>}}
 ```
-{{< assignment "1" "date" >}}
+{{< assignment "a1" "date" >}}
 
 #### countdown
 type=`countdown` renders a countdown for the time in the `date` field.
 Should be timezone aware using the `moments.js` library (not extensively tested), assumes EST (`America/NewYork`) time for the provided `date` data:
 ```tpl
-{{</* assignment "1" "countdown" */>}}
-{{</* assignment "2" "countdown" */>}}
+{{</* assignment "a1" "countdown" */>}}
+{{</* assignment "a2" "countdown" */>}}
 ```
-{{< assignment "1" "countdown" >}} <br>
-{{< assignment "2" "countdown" >}}
+{{< assignment "a1" "countdown" >}} <br>
+{{< assignment "a2" "countdown" >}}
 
 ### Card
 
@@ -259,7 +294,9 @@ Optional parameters:
 ### Columns
 
 Shortcode to generate two columns.
-Optional parameter to set maximum width for each column.
+- `width` as optional parameter to set maximum width for each column in px (will wrap if wider).
+- `split` as optional parameter to set split ratio between columns (i.e. `split = "2/1"` for 66% and 33%). Overwrites any width parameter.
+
 The two columns are split by `<--->`.
 
 ```tpl
@@ -307,6 +344,73 @@ Text that will appear in the third column
 
 {{< /columns >}}
 
+With different split ratios:
+
+```tpl
+{{</* columns split="2/1" */>}}
+
+#### Left Column
+66% column.
+
+<--->
+
+#### Right Column
+33% column.
+
+{{</* /columns */>}}
+```
+
+
+{{< columns split="2/1" >}}
+
+#### Left Column
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+<--->
+
+#### Right Column
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+{{< /columns >}}
+
+Splits also work for multiple columns
+
+```tpl
+{{</* columns split="1/1/3" */>}}
+
+#### First Column
+20% column.
+
+<--->
+
+#### Second Column
+20% column.
+
+<--->
+
+#### Third Column
+60% column.
+
+{{</* /columns */>}}
+```
+
+{{< columns split="1/1/3" >}}
+
+#### First Column
+20% column.
+
+<--->
+
+#### Second Column
+20% column.
+
+<--->
+
+#### Third Column
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+{{< /columns >}}
+
 ### Details
 
 Shortcode for the HTML "details" built-in to show/hide longer content adapted for Bootstrap 5.
@@ -340,134 +444,158 @@ Some inner text that starts visible
 {{< /details >}}
 
 ### Schedule
-Collection of 3 mostly independent shortcodes `week`, `happening`, and `lecture` to render a schedule using Bootstrap 5 cards (see [schedule](/schedule) for an in-practice example).
-- All 3 shortcodes can automatically compute and display dates if a `startDate  = 2024-08-19` (first Monday of the semester) variable is set in the page frontmatter.
-- Otherwise they will fall back to not showing specific dates
+Collection of 3 mostly independent shortcodes `week`, `happening`, and `lecture` to render a schedule using Bootstrap 5 cards (see [schedule](/schedule) for real-world examples).
+- All 3 shortcodes can automatically compute and display dates if a `startDate  = 2024-08-19` (first Monday of the semester) variable is set in the page frontmatter. Otherwise they will fall back to not showing specific dates.
+- **Note** that all schedule shortcodes need to be initiated with `{{%/* */%}}`, **not** the usual `{{</* */>}}` because the week shortcode needs to appear early in the rendering pipeline to show up in the ToC and the other shortcodes need to appear in the same context for shared variables.
 
 #### Week
-Displays a week heading (also shows up in ToC), optionally with specific week dates based on `startDate` variable.
-- Note that the week shortcode is initiated with `{{%/* */%}}`, **not** the usual `{{</* */>}}` because it needs to appear early in the rendering pipeline to show up in the ToC.
+Displays a week heading (also shows up in ToC).
+- Automatically counts up from Week 1. Manually set week with a `week = "XX"` shortcode parameter, will continue counting automatically from set value.
+- Optionally set a `title` variabel to show up in the week title and ToC.
+- Optionally with specific week dates (in grey) if `startDate` variable is set on page.
 
 **Usage**:
 
 ```tpl
-{{%/* schedule/week "1" */%}}
+{{%/* schedule/week */%}}
+{{%/* schedule/week title="Example" */%}}
 {{%/* schedule/week "20" */%}}
+{{%/* schedule/week */%}}
 ```
 
 **Examples**:
 
-{{% schedule/week "1" %}}
+{{% schedule/week %}}
+{{% schedule/week title="Example" %}}
 {{% schedule/week "20" %}}
+{{% schedule/week %}}
+
 
 #### Happening
 
-Generic happening schedule shortcode with a number of display options.
+Generic happening schedule shortcode with a number of display options. Date is derived from the `day` parameter and last week shortcode used.
 Short code parameters:
-- pos 0, "week": Week number
-- pos 1, "day": Day of the happening (3 letter lower), e.g., `mon`, `tue`, etc.
-- pos 2, "type": optional type of the happening (different display, see below for examples)
-- pos 3, "time": optional time argument, shown on the right side of the header if provided (useful for, e.g., exams)
+- pos 0, `day`: Day of the happening (3 letter lower), e.g., `day = "mon"`, `tue`, etc.
+- pos 1, `type`: optional type of the happening (different display, see below for examples)
+- pos 2, `time`: optional time argument, shown on the right side of the header if provided (useful for, e.g., exams)
 - Inner content rendered as markdown
 
 ##### Default
 No type, generic grey, single line happening
 ```tpl
-{{</* schedule/happening "1" "mon" */>}}
+{{%/* schedule/happening "mon" */%}}
 Something is **happening** today.
-{{</* /schedule/happening */>}}
+{{%/* /schedule/happening */%}}
 ```
 
-{{< schedule/happening "1" "mon" >}}
+{{% schedule/happening "mon" %}}
 Something is **happening** today.
-{{< /schedule/happening >}}
+{{% /schedule/happening %}}
 
 #### noclass
-type=`noclass`, green background, single line no class event
+type=`noclass`, green background, single line, e.g. used for no class happening.
 ```tpl
-{{</* schedule/happening "1" "tue" "noclass" */>}}
+{{%/* schedule/happening "tue" "noclass" */%}}
 Labor Day - **No Classes**, University Closed
-{{</* /schedule/happening */>}}
+{{%/* /schedule/happening */%}}
 ```
-{{< schedule/happening "1" "tue" "noclass" >}}
+{{% schedule/happening "tue" "noclass" %}}
 Labor Day - **No Classes**, University Closed
-{{< /schedule/happening >}}
+{{% /schedule/happening %}}
 
 #### deadline
-type=`deadline`, red outline, single line deadline event
+type=`deadline`, red outline, deadline events. Takes optional time parameter.
 ```tpl
-{{</* schedule/happening "1" "wed" "deadline" */>}}
+{{%/* schedule/happening "wed" "deadline" "11:59pm" */%}}
 **Deadline**: [Assignment 1](/#example) (11:59pm)
-{{</* /schedule/happening */>}}
+{{%/* /schedule/happening */%}}
 ```
-{{< schedule/happening "1" "wed" "deadline" >}}
+{{% schedule/happening "wed" "deadline" "11:59pm"%}}
 **Deadline**: [Assignment 1](/#example) (11:59pm)
-{{< /schedule/happening >}}
+{{% /schedule/happening %}}
 
-Mostly works well with the `assignment` shortcode (minus the countdown display):
+Mostly works well with the `assignment` shortcode (minus the countdown type currently):
 
 ```tpl
-{{</* schedule/happening "1" "wed" "deadline" */>}}
-{{</* assignment "3" "badge" */>}} **Deadline**: {{</* assignment "3" */>}}, due {{</* assignment "3" "date" */>}} 
-{{</* /schedule/happening */>}}
+{{%/* schedule/happening "wed" "deadline" */%}}
+{{%/* assignment "a3" "badge" */%}} **Deadline**: {{%/* assignment "a3" */%}}, due {{%/* assignment "a3" "date" */%}}
+{{%/* /schedule/happening */%}}
 ```
 
-{{< schedule/happening "1" "wed" "deadline" >}}
-{{< assignment "3" "badge" >}} **Deadline**: {{< assignment "3" >}}, due {{< assignment "3" "date" >}}
-{{< /schedule/happening >}}
+{{% schedule/happening "wed" "deadline" %}}
+{{% assignment "a3" "badge" %}} **Deadline**: {{% assignment "a3" %}}, due {{% assignment "a3" "date" %}}
+{{% /schedule/happening %}}
 
 #### exam
 type=`exam`, red background, multi-line exam event. Takes optional exam time.
 ```tpl
-{{</* schedule/happening "16" "fri" "exam" "7:00pm" */>}}
+{{%/* schedule/happening "fri" "exam" "7:00pm" */%}}
 ### Final Exam (7:00pm -- 9:30pm)
 - Some extra info
 - Link [test](#example)
-{{</* /schedule/happening */>}}
+{{%/* /schedule/happening */%}}
 ```
-{{< schedule/happening "16" "fri" "exam" "7:00pm" >}}
+{{% schedule/happening "fri" "exam" "7:00pm" %}}
 ### Final Exam (7:00pm -- 9:30pm)
 - Some extra info
 - Link [test](#example)
-{{< /schedule/happening >}}
+{{% /schedule/happening %}}
 
 ### Lecture
-Automatically renders lecture data from `/data/lectures.toml`. Goes by auto-incrementing id.
-Example data:
+The lecture shortcode renders lecture data from `/data/lectures.toml` by provided id.
+
+Example lecture entry with optional parameters commented out:
 ```toml
 [intro]
-id			= 1
+id			= "lec-intro"
 title		= "Course Introduction"
-short		= "Lec01"
-slides		= "https://drive.google.com/..."
-recording	= "https://ncsu.hosted.panopto.com/..."
-description	= "Included in recording of Lec00"
+# label		    = "lec-xyz"
+# description	= "Included in recording of Lec00"
+# short		    = "Guest Lecture"
+# time		    = "3 pm"
+# slides		= "https://drive.google.com/..."
+# recording	    = "https://ncsu.hosted.panopto.com/..."
 ```
-Optionally, `mentioned` and `additional` tables can be provided, including some additional icons based on type:
+- `id`: ID to retrive this lecture by from the shortcode (e.g. `{{%/* schedule/lecture "mon" "lec-intro" */%}}` for the id `lec-intro`).
+- `title`: Lecture title
+- `label`: Optional label to directly reference lecture on page (link id) and displayed in header. ID is used if not set.
+- `description`: Optional description text displayed for the lecture. Supports markdown.
+- `short`: Optional text displayed before the lecture title (e.g., "Guest Lecture"). Defaults to "Lecture X" with automatically incrementing counter.
+- `time`: Optional parameter to overwrite the lecture time displayed in the header. Defaults to page variable `lectureTime` or no display if the page variable is not set.
+- `slides`: Link to lecture slides.
+- `recording`: Link to lecture recording.
+
+Optionally, `discussion`, `mentioned`, and `additional` subtables can be provided to display additional resources (including some icons based on the type):
 ```
 [intro.additional]
 a1 = {authors="BD Payne, WK Edwards", title="A Brief Introduction to Usable Security", url="https://faculty.cc.gatech.edu/~keith/pubs/ieee-intro-usable-security.pdf", venue="IEEE Internet Computing", date="2008", type = "paper"}
 [intro.mentioned]
 m1 = {title="ACM SIGSOFT Empirical Standards for Software Engineering", url="https://www2.sigsoft.org/EmpiricalStandards/tools/", type="website"}
 ```
-Also displays lecture times in the header if a page frontmatter variable is set: `lectureTime = "6:00pm-7:15pm"`
+Automatic settings:
+- Displays specific dates based on last week shortcode and passed weekday parameter, requires `startDate` to be set on the page.
+- Displays lecture times in the header if a page frontmatter variable is set: `lectureTime = "6:00pm-7:15pm"`
+- Automatically counts up lecture counter ("Lecture 1: ..."), can be overwritten for each lecture in the toml, e.g., `short = "Guest Lecture"`.
 
 Short code parameters:
-- pos 0, "week": Week number
-- pos 1, "day": Day of the happening (3 letter lower), e.g., `mon`, `tue`, etc.
-- pos 2, "recorded": optional, for pre-recorded lectures, replaces lecture time and adds warning that this lecture won't be in person
+- pos 0, `day`: Day of the lecture (3 letter lower), e.g., `mon`, `tue`, etc.
+- pos 1, `id`: ID of the lecture to display from the toml file, can be alphanumeric, e.g., `lec-intro`.
+- pos 2, `recorded`: optional, for pre-recorded lectures, replaces lecture time and adds warning that this lecture won't be in person
 
 **Examples**:
 
 ```tpl
-{{</* schedule/lecture 2 "mon" */>}}
+{{%/* schedule/lecture "mon" "lec-intro" */%}}
 ```
-{{< schedule/lecture 2 "mon" >}}
+{{% schedule/lecture "mon" "lec-intro" %}}
+
+
+With `recorded = true` set in shortcode:
 
 ```tpl
-{{</* schedule/lecture 2 "tue" "true" */>}}
+{{%/* schedule/lecture "tue" "lec-intro" "true" */%}}
 ```
-{{< schedule/lecture 2 "tue" "true" >}}
+{{% schedule/lecture "tue" "lec-intro" "true" %}}
 
 
 ### Table

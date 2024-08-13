@@ -1,7 +1,6 @@
 [intro]
-id			= 1
+id			= "lec-intro"
 title		= "Course Introduction"
-short		= "Lec01"
 slides		= "https://drive.google.com/..."
 recording	= "https://ncsu.hosted.panopto.com/..."
 description	= "Included in recording of Lec00"
@@ -10,19 +9,18 @@ a1 = {authors="BD Payne, WK Edwards", title="A Brief Introduction to Usable Secu
 [intro.mentioned]
 m1 = {title="ACM SIGSOFT Empirical Standards for Software Engineering", url="https://www2.sigsoft.org/EmpiricalStandards/tools/", type="website"}
 
-[foundations1]
-id			= 2
+[hcs]
+id			= "lec-hcs"
 title		= "Human-Centered Security"
-short		= "Lec02"
 slides		= "https://drive.google.com/file/d/1T13e6Ivu0YO6qzgmPALzNFX-vL4n3zsN/view?usp=sharing"
 recording	= "https://ncsu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ccd92412-9064-4cad-a219-b0d60150b6e7"
-[foundations1.additional]
+[hcs.additional]
 a1 = {authors="L Cranor, S Garfinkel", title="Security and Usability: Designing Secure Systems that People Can Use", venue="O'Reilly Media", date="2005", type = "book"}
 
 [foundations2]
-id			= 3
+id			= "lec-foundations"
 title		= "Foundations"
-short		= "Lec03"
+short		= "Guest Lecture:"
 slides		= "https://drive.google.com/file/d/1jsWefQYG1rdh5eKWTYjGpTAa5zM7N9kN/view?usp=sharing"
 recording	= "https://ncsu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=3224f5af-bc22-40e8-9dd8-b0d60150ba3f"
 [foundations2.mentioned]
@@ -30,117 +28,52 @@ m1 = {authors="S Keshav", title="How to read a paper", url="https://dl.acm.org/d
 m2 = {authors="T Kohno, Y Acar, W Loh", title="Ethical Frameworks and Computer Security Trolley Problems: Foundations for Conversations", url="https://www.usenix.org/system/files/usenixsecurity23-kohno.pdf", venue="USENIX Security", date="2023", type="paper"}
 
 [ethics]
-id			= 4
+id			= "lec-ethics"
+label		= "xyz"
 title		= "Ethical Considerations"
-short		= "Lec04"
 slides		= "https://drive.google.com/file/d/1q5di9rTRkXFZHynjCy_zwHWNoFjDnzMk/view?usp=sharing"
 recording	= "https://ncsu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=6fcc159f-3d4a-4923-a03f-b0d60150be12"
 [ethics.mentioned]
 m1 = {title="NC State IRB Website", url="https://research.ncsu.edu/administration/compliance/research-compliance/irb/", type="website"}
 
 [experiments1]
-id			= 5
+id			= "lec-exp1"
 title		= "Experiment Design 1"
-short		= "Lec05"
+time		= "XYZ pm"
 slides		= "https://drive.google.com/file/d/1-wpwQM1sLmDYGNr8hX9YtOt4iZd7UKfR/view?usp=sharing"
 recording	= "https://ncsu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=b5dfb309-cb7a-4100-8894-b0d60150c1cd"
 [experiments1.additional]
 m1 = {authors="Acar et al.", title="Comparing the Usability of Cryptographic APIs", url="https://www.ieee-security.org/TC/SP2017/papers/161.pdf", venue="IEEE S&P", date="2017", type="paper"}
 
 [experiments2]
-id			= 6
+id			= "lec-exp2"
 title		= "Experiment Design 2"
-short		= "Lec06"
 slides		= "https://drive.google.com/file/d/1oECiqYQeVvCddTBgQjAdM31ogelDNMrg/view?usp=sharing"
 recording	= "https://ncsu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=453d21e0-2d80-4ef8-add6-b0d60150c54f"
 [experiments2.mentioned]
 m1 = {title="ACM SIGSOFT Empirical Standards for Software Engineering", url="https://www2.sigsoft.org/EmpiricalStandards/tools/", type="website"}
 
 [lec07]
-id			= 7
+id			= "lec-pop"
 title		= "Populations & Sampling"
-short		= "Lec07"
 slides		= "https://drive.google.com/file/d/1-IffP1ulq3PE68gHgJyZChgF5I_fSWn5/view?usp=sharing"
 recording	= "https://ncsu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=884d93f1-b2eb-4c3e-aaca-b0d60150c8ed"
 
 [lec08]
-id			= 8
+id			= "lec-data"
 title		= "Data Collection"
-short		= "Lec08"
 slides		= "https://drive.google.com/file/d/1DCvObMKRvDY_CxEzlVmUDKp0hBg7oVUi/view?usp=sharing"
 recording	= "https://ncsu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=aa655256-7f8b-460b-88ff-b0d60150cc5e"
 
 [lec09]
-id			= 9
+id			= "lec-qual"
 title		= "Qualitative Data"
-short		= "Lec09"
 slides		= "https://drive.google.com/file/d/1v3I-87z0IofJzBKk3-TiIid-G-Llz5Zj/view?usp=sharing"
 recording	= "https://ncsu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=7cb5bca0-580c-4c42-8792-b0d60150cfdf"
 
-[lec10]
-id			= 10
-title		= "Quantitative Data"
-short		= "Lec10"
-slides		= "https://drive.google.com/file/d/199MtTaWL_WhX4WNDxOzFrTlKovB4p_Y9/view?usp=sharing"
-recording	= "https://ncsu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=9bc72db7-5ce0-4efa-b3eb-b0d60150d373"
-
-[lec11]
-id			= 11
-title		= "Data Visualization"
-short		= "Lec11"
-slides		= "https://drive.google.com/file/d/10m46Ae1KTql_GbkNqDptVxDonXtICFPL/view?usp=sharing"
-recording	= "https://ncsu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=586b008d-64c1-4e0e-8e73-b0d60150da7e"
-
-[lec12]
-id			= 12
-title		= "Usable Authentication & Passwords"
-short		= "Lec12"
-slides		= "https://drive.google.com/file/d/1lyqZ5u0KcODetaiw-YbwPk5RNJ2tLwWX/view?usp=sharing"
-recording	= "https://ncsu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d73d8740-0da4-4b2e-9cc7-b0d60150de69"
-
-[tls]
-id			= 13
-title		= "TLS & Secure Email"
-short		= "Lec13"
-slides		= "https://drive.google.com/file/d/1DblqBwEn66wyZ9hyHY6la-Yv35Vfn9Xy/view?usp=sharing"
-recording	= "https://ncsu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2ec43e2f-cef9-4af0-aa30-b0d60150e1be"
-[tls.mentioned]
-m1 = {authors="Akhawe et al.", title="Alice in Warningland: A Large-Scale Field Study of Browser Security Warning Effectiveness", url = "https://www.usenix.org/system/files/conference/usenixsecurity13/sec13-paper_akhawe.pdf", venue="USENIX Security", date="2013", type="paper"}
-m2 = {authors="Fahl et al.", title="Why Eve and Mallory (also) Love Webmasters: A Study on the Root Causes of SSL Misconfigurations", url = "https://saschafahl.de/static/paper/webmasters2014.pdf", venue="ACM CCS", date="2014", type="paper"}
-m3 = {authors="Acer et al.", title="Where the Wild Warnings Are: Root Causes of Chrome HTTPS Certificate Errors", url = "https://dl.acm.org/doi/pdf/10.1145/3133956.3134007", venue="ACM CCS", date="2017", type="paper"}
-m4 = {authors="Tiefenau et al.", title="A Usability Evaluation of Let's Encrypt and Certbot: Usable Security Done Right", url = "https://dl.acm.org/doi/10.1145/3319535.3363220", venue="ACM CCS", date="2019", type="paper"}
-m5 = {authors="Stransky et al.", title="27 Years and 81 Million Opportunities Later: Investigating the Use of Email Encryption for an Entire University", url = "https://publications.teamusec.de/2022-oakland-email/pdf/2022_oakland_email_stransky_preprint.pdf", venue="IEEE S&P", date="2022", type="paper"}
-
-[secmes]
-id			= 14
-title		= "Secure Messengers"
-short		= "Lec14"
-slides		= "https://drive.google.com/file/d/1ChzHUS3XpCZ7nSGBQLYBBzaKnhm8VrXs/view?usp=sharing"
-recording	= "https://ncsu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=eb27f6ae-d704-4edc-8cc0-b0d60150e530"
-[secmes.mentioned]
-m1 = {authors="Akgul et al.", title="From Secure to Military-Grade: Exploring the Effect of App Descriptions on User Perceptions of Secure Messaging.", url = "https://dl.acm.org/doi/abs/10.1145/3463676.3485602", venue="PETS", date="2021", type="paper"}
-m2 = {authors="Bai et al.", title="An Inconvenient Trust: User Attitudes toward Security and Usability Tradeoffs for Key-Directory Encryption Systems", url = "https://dl.acm.org/doi/10.5555/3235895.3235906", venue="SOUPS", date="2016", type="paper"}
-m3 = {authors="Abu-Salma et al.", title="Obstacles to the Adoption of Secure Communication Tools", url = "https://www.ieee-security.org/TC/SP2017/papers/84.pdf", venue="IEEE S&P", date="2017", type="paper"}
-m4 = {authors="Akgul et al.", title="Evaluating In-Workflow Messages for Improving Mental Models of End-to-End Encryption", url = "https://www.usenix.org/system/files/sec21-akgul.pdf", venue="USENIX Security", date="2021", type="paper"}
-
-[dev]
-id			= 15
-title		= "Developer-centered Security"
-short		= "Lec15"
-slides		= "https://drive.google.com/file/d/1lM5jd_uYhLdhjHCHTOx5l6OR7Dp8XhFh/view?usp=sharing"
-recording	= "https://ncsu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=49d570b4-4749-4648-9872-b0d60150e88a"
-[dev.mentioned]
-m1 = {authors="Kaur et al.", title="Where to Recruit for Security Development Studies: Comparing Six Software Developer Samples", url = "https://www.usenix.org/system/files/sec22-kaur.pdf", venue="USENIX Security", date="2022", type="paper"}
-m2 = {authors="Acar et al.", title="You get where you're looking for: The impact of information sources on code security", url = "https://ieeexplore.ieee.org/document/7546508", venue="IEEE S&P", date="2016", type="paper"}
-m3 = {authors="Fischer et al.", title="Stack Overflow Considered Harmful? The Impact of Copy&Paste on Android Application Security", url = "https://ieeexplore.ieee.org/document/7958574", venue="IEEE S&P", date="2017", type="paper"}
-m4 = {authors="Krause et al.", title="Pushed by Accident: A Mixed-Methods Study on Strategies of Handling Secret Information in Source Code Repositories", url = "https://dwermke.com/pdf/conf-usenix-krause23.pdf", venue="USENIX Security", date="2023", type="paper"}
-m5 = {authors="White House", title="Back To The Building Blocks: A Path Toward Secure and Measurable Software", url = "https://www.whitehouse.gov/wp-content/uploads/2024/02/Final-ONCD-Technical-Report.pdf", date="2024", type="website"}
-m6 = {authors="Höltervennhoff et al.", title="’I wouldn't want my unsafe code to run my pacemaker’: An Interview Study on the Use, Comprehension, and Perceived Risks of Unsafe Rust.", url = "https://www.usenix.org/system/files/usenixsecurity23-holtervennhoff.pdf", venue="USENIX Security", date="2023", type="paper"}
-
 [ssc]
-id			= 16
+id			= "lec-ssc"
 title		= "Software Suppy Chain Security"
-short		= "Lec16"
 slides		= "https://drive.google.com/file/d/1fRyGBwKrTAXZZ27uEtLh4u7HC31tZNk2/view?usp=sharing"
 recording	= "https://ncsu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=1c480c47-703d-4bf1-8e10-b0d60150ec15"
 [ssc.mentioned]
@@ -159,129 +92,3 @@ a3 = {title="OpenSSF's SLSA", url="https://slsa.dev/", type="website"}
 a4 = {title="OpenSSF's ScoreCards", url="https://securityscorecards.dev/", type="website"}
 a5 = {title="OpenSSF's Sigstore", url="https://www.sigstore.dev/", type="website"}
 a6 = {title="SCORED Workshop", url="https://scored.dev/", type="website"}
-
-[crypto]
-id			= 17
-title		= "Usable Cryptography"
-short		= "Lec17"
-slides		= "https://drive.google.com/file/d/1kmNfG1RDnoaRkThhzlO-VSFp_gSXmpcg/view?usp=sharing"
-recording	= "https://ncsu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ae39a2b6-d041-4b73-9ff5-b0d60150ef68"
-[crypto.mentioned]
-m1 = {authors = "Acar et al.", title = "Comparing the Usability of Cryptographic APIs", url = "https://ieeexplore.ieee.org/document/7958576", venue="IEEE S&P", date="2017", type = "paper"}
-m2 = {authors = "Gorski et al.", title = "Developers Deserve Security Warnings, Too: On the Effect of Integrated Security Advice on Cryptographic API Misuse", url = "https://dl.acm.org/doi/10.5555/3291228.3291250", venue="SOUPS", date="2018", type = "paper"}
-m3 = {authors = "Gorski et al.", title = "Listen to Developers! A Participatory Design Study on Security Warnings for Cryptographic APIs", url = "https://dl.acm.org/doi/10.1145/3313831.3376142", venue="CHI", date="2020", type = "paper"}
-m4 = {authors = "Jancar et al.", title = '"They’re not that hard to mitigate": What Cryptographic Library Developers Think About Timing Attacks', url = "https://eprint.iacr.org/2021/1650.pdf", venue="IEEE S&P", date="2023", type = "paper"}
-m5 = {authors = "Fischer et al.", title = 'The Challenges of Bringing Cryptography from Research Papers to Products:Results from an Interview Study with Experts', url = "https://www.usenix.org/system/files/sec24summer-prepub-497-fischer.pdf", venue="USENIX Security", date="2024", type = "paper"}
-[crypto.additional]
-a1 = {authors = "Gidney et al.", title = 'How to factor 2048 bit RSA integers in 8 hours using 20 million noisy qubits', url = "https://arxiv.org/abs/1905.09749", date="2021", type = "paper"}
-
-[enterprise]
-id			= 18
-title		= "Enterprise Security"
-short		= "Lec18"
-slides		= "https://drive.google.com/file/d/1-QUA3fIpH2GH3fixb5U1Mv2K34LqnWT0/view?usp=sharing"
-recording	= "https://ncsu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=8d62340f-4219-4a84-91fe-b0d60150f30e"
-[enterprise.mentioned]
-m1 = {authors = "Ryan et al.", title = "Unhelpful Assumptions in Software Security Research", url = "https://dl.acm.org/doi/10.1145/3576915.3623122", venue="ACM CCS", date="2023", type = "paper"}
-m2 = {authors = "Serafini et al.", title = "On the Recruitment of Company Developers for Security Studies: Results from a Qualitative Interview Study", url = "https://www.usenix.org/system/files/soups2023-serafini.pdf", venue="SOUPS", date="2023", type = "paper"}
-m3 = {authors = "Li et al.", title = "Keepers of the Machines: Examining How System Administrators Manage Software Updates", url = "https://faculty.cc.gatech.edu/~frankli/papers/li_soups2019.pdf", venue="SOUPS", date="2019", type = "paper"}
-m4 = {authors = "Markert et al.", title = '“As soon as it’s a risk, I want to require MFA”: How Administrators Configure Risk-based Authentication', url = "https://www.usenix.org/system/files/soups2022-markert.pdf", venue="SOUPS", date="2022", type = "paper"}
-m5 = {authors = "Kepkowski et al.", title = 'Challenges with Passwordless FIDO2 in an Enterprise Setting: A Usability Study', url = "https://ieeexplore.ieee.org/document/10305624", venue="SecDev", date="2023", type = "paper"}
-m6 = {authors = "de Smale et al.", title = 'No One Drinks From the Firehose: How Organizations Filter and Prioritize Vulnerability Information', url = "https://ieeexplore.ieee.org/abstract/document/10179447", venue="IEEE S&P", date="2023", type = "paper"}
-m7 = {authors = "Woods et al.", title = 'Lessons Lost: Incident Response in the Age of Cyber Insurance and Breach Attorneys', url = "https://www.usenix.org/system/files/sec23fall-prepub-292-woods.pdf", venue="USENIX Security", date="2023", type = "paper"}
-m8 = {authors = "Hielscher et al.", title = '“Employees Who Don’t Accept the Time Security Takes Are Not Aware Enough”: The CISO View of Human-Centred Security,', url = "https://www.usenix.org/system/files/usenixsecurity23-hielscher.pdf", venue="USENIX Security", date="2023", type = "paper"}
-
-[vpn]
-id			= 19
-title		= "VPNs & TOR"
-short		= "Lec19"
-slides		= "https://drive.google.com/file/d/1EKSk9yipjzIs3rSWHKRkY5G0JsFp7eLx/view?usp=sharing"
-recording	= "https://ncsu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=cfdcfb13-8b13-4db6-a159-b0d60150f686"
-[vpn.mentioned]
-m1 = {authors = "Jones et al.", title = "Work-From-Home and COVID-19: Trajectories of Endpoint Security Management in a Security Operations Center", url = "https://www.usenix.org/system/files/sec23fall-prepub-143-jones.pdf", venue="USENIX", date="2023", type = "paper"}
-m2 = {authors = "Wu et al.", title = "Back to School: On the (In)Security of Academic VPNs", url = "https://www.usenix.org/system/files/usenixsecurity23-wu-ka-lok.pdf", venue="USENIX", date="2023", type = "paper"}
-m3 = {authors = "Dutkowska-Zuk et al.", title = "How and Why People Use Virtual Private Networks", url = "https://www.usenix.org/system/files/sec22-dutkowska-zuk.pdf", venue="USENIX", date="2022", type = "paper"}
-m4 = {authors = "Markert et al.", title = '“As soon as it’s a risk, I want to require MFA”: How Administrators Configure Risk-based Authentication', url = "https://www.usenix.org/system/files/soups2022-markert.pdf", venue="SOUPS", date="2022", type="paper"}
-m5 = {authors = "Norcie et al.", title = "Why Johnny Can't Blow the Whistle: Identifying and Reducing Usability Issues in Anonymity Systems", url = "https://www.ndss-symposium.org/wp-content/uploads/2017/09/04_1-paper.pdf", venue="NDSS USEC", date="2023", type="paper"}
-
-[phish]
-id			= 20
-title		= "Phishing"
-short		= "Lec20"
-slides		= "https://drive.google.com/file/d/1v4VtE-d8UVcQNXO3f9IEdeKrd3Vm7pXP/view?usp=sharing"
-recording	= "https://ncsu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=67f4ca58-592d-45bf-aa9d-b0d60150f9cf"
-[phish.mentioned]
-m1 = {authors = "Tischer et al.", title = "Users Really Do Plug in USB Drives They Find", url = "https://ieeexplore.ieee.org/document/7546509", venue="IEEE S&P", date="2016", type = "paper"}
-m2 = {authors = "Franz et al.", title = "SoK: Still Plenty of Phish in the Sea — A Taxonomy of User-Oriented Phishing Interventions and Avenues for Future Research", url = "https://www.usenix.org/system/files/soups2021-franz.pdf", venue="USENIX Security", date="2021", type = "paper"}
-m3 = {authors = "Reinheimer et al.", title = "An investigation of phishing awareness and education over time: When and how to best remind users", url = "https://www.usenix.org/system/files/soups2020-reinheimer_0.pdf", venue="SOUPS", date="2020", type = "paper"}
-m4 = {authors = "Lain et al.", title = "Phishing in Organizations: Findings from a Large-Scale and Long-Term Study", url = "https://ieeexplore.ieee.org/document/9833766", venue="IEEE S&P", date="2022", type = "paper"}
-m5 = {authors = "Brunken et al.", title = "“To Do This Properly, You Need More Resources”: The Hidden Costs of Introducing Simulated Phishing Campaigns", url = "https://www.usenix.org/system/files/usenixsecurity23-brunken.pdf", venue="USENIX Security", date="2023", type = "paper"}
-
-[ai]
-id			= 21
-title		= "Usable AI Security"
-short		= "Lec21"
-slides		= "https://drive.google.com/file/d/17swaKpcED1Ar-899qKbNJd2lD4SoHaxM/view?usp=sharing"
-recording	= "https://ncsu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=3dd291d0-53c5-48c9-9183-b0d60150fd82"
-[ai.mentioned]
-m1 = {authors = "NIST", title = "Adversarial Machine Learning: A Taxonomy and Terminology of Attacks and Mitigations", url = "https://doi.org/10.6028/NIST.AI.100-2e2023", date="Feb 2024", type = "paper"}
-m2 = {authors = "Shan et al.", title = "Prompt-Specific Poisoning Attacks on Text-to-Image Generative Models", url = "https://arxiv.org/abs/2310.13828", venue="arXiv", date="2023", type = "paper"}
-m3 = {authors = "Grosse et al.", title = "“Why do so?” — A practical perspective on machine learning security", url = "https://advml-frontier.github.io/past/icml2022/pdf/64/CameraReady/MentalModel2Dot0_Workshop-5.pdf", venue="ICML", date="2022", type = "paper"}
-m4 = {authors = "Mirsky et al.", title = "Adversarial Machine Learning - Industry Perspectives", url = "https://arxiv.org/abs/2002.05646", venue="ACM Comput. Surv.", date="2021", type = "paper"}
-m5 = {authors = "Bieringer et al.", title = "Industrial practitioners’ mental models of adversarial machine learning", url = "https://www.usenix.org/system/files/soups2022-bieringer.pdf", venue="SOUPS", date="2022", type = "paper"}
-m6 = {authors = "Mink et al.", title = "“Security is not my field, I’m a stats guy”: A Qualitative Root Cause Analysis of Barriers to Adversarial Machine Learning Defenses in Industry", url = "https://www.usenix.org/system/files/usenixsecurity23-mink.pdf", venue="USENIX Security", date="2023", type = "paper"}
-[ai.additional]
-a1 = {title = 'Tensortrust', url = "https://tensortrust.ai/", type = "website"}
-a2 = {title = 'AI Incident Database', url = "https://incidentdatabase.ai/", type = "website"}
-
-[vr]
-id			= 22
-title		= "Usable VR Security"
-short		= "Lec22"
-slides		= "https://drive.google.com/file/d/13aaPJ4xFwKqfuldT9HoidrPtYgnTypNs/view?usp=sharing"
-recording	= "https://ncsu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=7dd7f10e-3bb4-471b-86de-b0d601510108"
-[vr.mentioned]
-m1 = {authors = "Lebeck et al.", title = "Towards Security and Privacy for Multi-User Augmented Reality: Foundations with End Users", url = "https://ieeexplore.ieee.org/document/8418615", date = "2018", venue = "IEEE S&P", type = "paper"}
-m2 = {authors = "Stephenson et al.", title = "SoK: Authentication in Augmented and Virtual Reality", url = "https://ieeexplore.ieee.org/document/9833742", date="2022", venue= "IEEE S&P", type = "paper"}
-m3 = {authors = "Slocum et al.", title = "Going through the motions: AR/VR keylogging from user head motions", url = "https://www.usenix.org/system/files/usenixsecurity23-slocum.pdf", date="2023", venue= "USENIX Security", type = "paper"}
-m4 = {authors = "Zhang et al.", title = "It’s all in your head(set): Side-channel attacks on AR/VR systems", url = "https://www.usenix.org/system/files/sec23fall-prepub-131-zhang-yicheng.pdf", date="2023", venue= "USENIX Security", type = "paper"}
-m5 = {authors = "Tseng et al.", title = "The Dark Side of Perceptual Manipulations in Virtual Reality,", url = "https://dl.acm.org/doi/10.1145/3491102.3517728", date="2022", venue= "ACM CHI", type = "paper"}
-m6 = {authors = "Windl et al.", title = "Investigating Security Indicators for Hyperlinking Within the Metaverse", url = "https://www.usenix.org/system/files/soups2023-windl.pdf", date="2023", venue= "SOUPS", type = "paper"}
-m7 = {authors = "Abhinaya S.B. et al.", title = "Enabling Developers, Protecting Users: Investigating Harassment and Safety in VR", url = "https://arxiv.org/pdf/2403.05499v1.pdf", date="2024", venue= "USENIX Security", type = "paper"}
-
-[perms]
-id			= 23
-title		= "Permissions & Warnings"
-short		= "Lec23"
-slides		= "https://drive.google.com/file/d/1AlcYnitghMObKUHZPFeCOMz6Opw4kaQp/view?usp=sharing"
-recording	= "https://ncsu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=25548119-3209-49c4-8b92-b0d6015104a3"
-[perms.mentioned]
-m1 = {authors = "Vance et al.", title = "The Fog of Warnings: How Non-essential Notifications Blur with Security Warnings", url = "https://par.nsf.gov/servlets/purl/10176924", date = "2019", venue = "SOUPS", type = "paper"}
-m2 = {authors = "M. S. Wogalter", title = "Communication-Human Information Processing (C-HIP) Model", url = "https://www.safetyhumanfactors.org/wp-content/uploads/2020/07/375)Wogalter(2019)(d)-C-HIPModel-ForensicHFEChap3.pdf", date = "2019", type = "book"}
-m3 = {authors = "L. Cranor", title = "A Framework for Reasoning About the Human in the Loop", url = "https://www.usenix.org/legacy/events/upsec08/tech/full_papers/cranor/cranor.pdf", venue = "Usability, Psychology and Security", date = "2008", type = "paper"}
-m4 = {authors = "Bilogrevic et al.", title = "“Shhh. be quiet!” Reducing the Unwanted Interruptions of Notification Permission Prompts on Chrome", url = "https://www.usenix.org/system/files/sec21-bilogrevic.pdf", venue = "USENIX Security", date = "2021", type = "paper"}
-m5 = {authors = "Porter Felt et al.", title = "Android permissions: user attention, comprehension, and behavior", url = "https://dl.acm.org/doi/10.1145/2335356.2335360", venue = "SOUPS", date = "2012", type = "paper"}
-m6 = {authors = "Wijesekera et al.", title = "Android Permissions Remystified: A Field Study on Contextual Integrity", url = "https://www.usenix.org/system/files/conference/usenixsecurity15/sec15-paper-wijesekera.pdf", venue = "USENIX Security", date = "2015", type = "paper"}
-m7 = {authors = "Elbitar et al.", title = "Explanation beats context: The effect of timing & rationales on users' runtime permission decisions", url = "https://www.usenix.org/system/files/sec21-elbitar.pdf", venue = "USENIX Security", date = "2021", type = "paper"}
-
-[lec24]
-id			= 24
-title		= "Wrap-Up"
-short		= "Lec24"
-slides		= "https://drive.google.com/file/d/1Xv9Lg8OdVcW7jTNgi89BU1gXAVoNcLPh/view?usp=sharing"
-recording	= "https://ncsu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=902f1cdc-bcf9-44a7-b9ca-b0d60151084c"
-
-[lec25]
-id			= 25
-title		= "Presentations 1"
-short		= "Lec25"
-
-[lec26]
-id			= 26
-title		= "Presentations 2"
-short		= "Lec26"
-
-[lec27]
-id			= 27
-title		= "Backup Date (likely no class)"
-short		= "Lec27"

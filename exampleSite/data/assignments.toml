@@ -33,3 +33,11 @@ url 		= "/schedule#final"
 page		= "/exam"
 date 		= "2028-08-26T23:59:59"
 color 		= "bg-primary"
+
+[p1]
+id 			= "p1"
+name	 	= "Reading P01"
+short_name 	= "P01"
+url 		= "/schedule#P01"
+page		= "/assignments/p1"
+date 		= "2028-08-26T23:59:59"
