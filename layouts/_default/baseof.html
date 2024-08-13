@@ -1,54 +1,57 @@
 <!DOCTYPE html>
 <html lang="{{ .Lang | default "en" }}">
-    <head>
-        <!--- Head -->
-        {{- partial "head.html" . -}}
-        <!--- Title -->
-        {{- block "title" . }}
-        <title>{{ .Title }} | {{ .Site.Params.clong }}</title>
-        {{- end }}
-    </head>
-    <body>
-        <a id="skip-link" href="#markdown">Skip to text content</a>
-        <div id="ncstate-utility-bar" data-prop-show-brick="1" data-prop-cse-id="00578865650663686:7xmauxacbr4" ></div>
-        <div class="container-fluid">
-            <div class="row flex-xl-nowrap" style="margin-top:40px;">
-                {{ if default true (default .Site.Params.showSidebar .Params.showSidebar) }}
-                <div class="d-none d-lg-block col-lg-3 col-xl-2" id="sidebar">
-                    {{- partial "sidebar.html" . -}}
-                </div>
-                {{ else }}
-                <div class="d-none d-xl-block col-xl-2">
-                </div>
-                {{ end }}
-                {{ if default true (default .Site.Params.showToC .Params.showToC) }}
-                <div class="d-none d-lg-block col-lg-2" id="toc">
-                    {{- partial "toc.html" . -}}
-                </div>
-                {{ else }}
-                <div class="d-none d-lg-block col-lg-2" id="toc">
-                </div>
-                {{ end }}
-                <main class="col-12 col-lg-10 col-xl-8 py-md-3 ps-md-5">
+	<head>
+		<!--- Head -->
+		{{- partial "head.html" . -}}
+		<!--- Title -->
+		{{- block "title" . }}
+		<title>{{ .Title }} | {{ .Site.Params.clong }}</title>
+		{{- end }}
+	</head>
+	<body>
+		<a id="skip-link" href="#markdown">Skip to text content</a>
+		<div id="ncstate-utility-bar" data-prop-show-brick="1" data-prop-cse-id="00578865650663686:7xmauxacbr4" ></div>
+		<div class="container-fluid">
+			<div class="row justify-content-center" style="margin-top:40px;">
+				{{ if default true (default .Site.Params.showSidebar .Params.showSidebar) }}
+				<div class="d-none d-lg-flex flex-column col-lg-2 col-xl-2 order-1 ml-auto" id="sidebar">
+					{{- partial "sidebar.html" . -}}
+				</div>
+				{{ else }}
+				<div class="d-none d-xl-block col-xl-2 order-lg-1"></div>
+				{{ end }}
+				{{ if default true (default .Site.Params.showToC .Params.showToC) }}
+				<div class="d-none d-lg-flex flex-column col-lg-2 col-xl-2 order-3 mr-auto" id="toc">
+					{{- partial "toc.html" . -}}
+				</div>
+				{{ else }}
+				<div class="d-none d-xl-block col-xl-2 order-lg-3"></div>
+				{{ end }}
+				{{ if or (not (default true (default .Site.Params.showSidebar .Params.showSidebar))) (not (default true (default .Site.Params.showToC .Params.showToC))) }}
+    			<!-- Layout if either the sidebar or the ToC is not set (wider content on lg) -->
+				<main class="col-12 col-lg-10 col-xl-8 py-md-3 ps-md-5 order-2">
+				{{ else }}
+				<main class="col-12 col-lg-8 col-xl-8 py-md-3 ps-md-5 order-2">
+				{{ end }}
 					{{ if default true (default .Site.Params.showMenu .Params.showMenu) }}
 					{{- partial "menu.html" . -}}
 					{{ end }}
 					{{ if default false (default .Site.Params.showWIP .Params.showWIP) }}
-						{{- partial "wip.html" . -}}
+					{{- partial "wip.html" . -}}
 					{{ end }}
-                    {{- partial "breadcrumbs.html" . -}}
+					{{- partial "breadcrumbs.html" . -}}
 					<div id="markdown">
-                        {{- block "main" . }}{{- end }}
-                    </div>
+						{{- block "main" . }}{{- end }}
+					</div>
 					{{ if default true (default .Site.Params.showFooter .Params.showFooter) }}
-                    <footer id="footer">
-                        {{- partial "footer.html" . -}}
-                    </footer>
+					<footer id="footer">
+						{{- partial "footer.html" . -}}
+					</footer>
 					{{ end }}
-                </main>
-            </div>
-        </div>
-        <script src="https://cdn.ncsu.edu/brand-assets/utility-bar/v3/ncstate-utility-bar.js"></script>
-        <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
-    </body>
+				</main>
+			</div>
+		</div>
+		<script src="https://cdn.ncsu.edu/brand-assets/utility-bar/v3/ncstate-utility-bar.js"></script>
+		<script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+	</body>
 </html>
