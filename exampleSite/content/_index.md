@@ -178,7 +178,10 @@ Without any type just renders assignment title with link to assignment `page` if
 
 #### badge
 type=`badge` renders as badge with link to assignment `url` if provided.
-    Different badge color optionally set by a `color` variable in the data file. Color options follow the Bootstrap 5 badge format, e.g., `bg-primary`, `bg-info`, etc.
+- Different badge color optionally set by a `color` variable in the data file. Color options follow the Bootstrap 5 badge format, e.g., `bg-primary`, `bg-info`, etc.
+- Theme has custom additional badge classes for more colors; `bg-blue`, `bg-purple` etc. 
+- Color class can be combined with text classes for hard to read text colors, e.g. `color = "bg-warning text-dark"`
+
 ```tpl
 {{</* assignment "a1" "badge" */>}}
 {{</* assignment "a2" "badge" */>}}
@@ -470,9 +473,7 @@ Displays a week heading (also shows up in ToC).
 {{% schedule/week "20" %}}
 {{% schedule/week %}}
 
-
 #### Happening
-
 Generic happening schedule shortcode with a number of display options. Date is derived from the `day` parameter and last week shortcode used.
 Short code parameters:
 - pos 0, `day`: Day of the happening (3 letter lower), e.g., `day = "mon"`, `tue`, etc.
