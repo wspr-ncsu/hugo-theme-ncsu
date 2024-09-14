@@ -118,13 +118,17 @@ sectionPagesMenu = "main"
 		weight = 3
 ```
 
-## Shortcodes
+---
+
+## Bootstrap Shortcodes
+
+Shortcodes that wrap some Bootstrap elements and classes for easier use in Markdown files.
+Note that HTML code with Bootstrap classes is also valid Markdown and will render.
 
 ### Alert
-
-Creates bootstrap alert text box with customizable markdown content.
+Bootstrap alert text box with customizable markdown content.
 First parameter is passed as class (for setting color).
-- Bootstrap documentation: https://getbootstrap.com/docs/5.0/components/alerts/
+- Bootstrap documentation: https://getbootstrap.com/docs/5.3/components/alerts/
 - Example parameters: `alert-primary` (red), `alert-secondary` (grey), `alert-success` (green), ...
 
 **Usage**:
@@ -147,67 +151,132 @@ With parameter: `alert-success`
 With parameter: `alert-info`
 {{< /alert >}}
 
-### Assignment
-
-Assignment shortcode with multiple displays of assignment data from `/data/assignments.toml`.
-Real-world examples on the [assignments](/assignments) page.
-
-Example data entry:
-```toml
-[a1]
-id 			= "a1"
-name	 	= "Assignment 01"
-short_name 	= "A01"
-url 		= "/schedule#a1"
-page		= "/assignments/a1"
-date 		= "2024-07-21T13:59:59"
-color		= "bg-secondary"
-```
-
-Shortcode parameters:
-- pos 0, "id": Specific assignment selected by `id` field from `/data/assignments.toml`.
-- pos 1, "type": optional type to control what data is displayed (see examples below for all options).
-
-
-#### Default
-Without any type just renders assignment title with link to assignment `page` if provided:
-```tpl
-{{</* assignment "a1" */>}}
-```
-{{< assignment "a1" >}}
-
-#### badge
-type=`badge` renders as badge with link to assignment `url` if provided.
-- Different badge color optionally set by a `color` variable in the data file. Color options follow the Bootstrap 5 badge format, e.g., `bg-primary`, `bg-info`, etc.
-- Theme has custom additional badge classes for more colors; `bg-blue`, `bg-purple` etc. 
-- Color class can be combined with text classes for hard to read text colors, e.g. `color = "bg-warning text-dark"`
+### Badge
+Bootstrap badge span with customizable markdown content.
+- Bootstrap documentation: https://getbootstrap.com/docs/5.3/components/badge/
+- Example parameters: `alert-primary` (red), `alert-secondary` (grey), `alert-success` (green), ...
 
 ```tpl
-{{</* assignment "a1" "badge" */>}}
-{{</* assignment "a2" "badge" */>}}
+{{</* badge "text-bg-primary" */>}}
+Primary
+{{</* /badge */>}}
 ```
-{{< assignment "a1" "badge" >}} <br>
-{{< assignment "a2" "badge" >}}
+{{< badge "text-bg-primary" >}}
+Primary
+{{< /badge >}}
+<br>
 
-#### date
-type=`date` renders due date and time:
-```tpl
-{{</* assignment "a1" "date" */>}}
-```
-{{< assignment "a1" "date" >}}
+**Examples:**
 
-#### countdown
-type=`countdown` renders a countdown for the time in the `date` field.
-Should be timezone aware using the `moments.js` library (not extensively tested), assumes EST (`America/NewYork`) time for the provided `date` data:
+{{< badge "text-bg-primary" >}}
+Primary
+{{< /badge >}}
+
+{{< badge "text-bg-secondary" >}}
+Secondary
+{{< /badge >}}
+
+{{< badge "text-bg-info" >}}
+Info
+{{< /badge >}}
+
+{{< badge "text-bg-warning" >}}
+Warning
+{{< /badge >}}
+
+{{< badge "text-bg-success" >}}
+Success
+{{< /badge >}}
+
+#### Pill Badge
+With `.rounded-pill` class.
+
 ```tpl
-{{</* assignment "a1" "countdown" */>}}
-{{</* assignment "a2" "countdown" */>}}
+{{</* badge "text-bg-primary rounded-pill" */>}}
+Primary
+{{</* /badge */>}}
 ```
-{{< assignment "a1" "countdown" >}} <br>
-{{< assignment "a2" "countdown" >}}
+{{< badge "text-bg-primary rounded-pill" >}}
+Primary
+{{< /badge >}}
+
+
+### Button
+Bootstrap button with customizable markdown content.
+- Bootstrap documentation: https://getbootstrap.com/docs/5.3/components/buttons/
+
+```tpl
+{{</* button "btn-primary" */>}}
+Primary
+{{</* /button */>}}
+```
+{{< button "btn-primary" >}}
+Primary
+{{< /button >}}
+<br>
+
+**Examples:**
+
+{{< button "btn-primary" >}}
+Primary
+{{< /button >}}
+
+{{< button "btn-secondary" >}}
+Secondary
+{{< /button >}}
+
+{{< button "btn-info" >}}
+Info
+{{< /button >}}
+
+{{< button "btn-success" >}}
+Success
+{{< /button >}}
+
+{{< button "btn-warning" >}}
+Warning
+{{< /button >}}
+
+{{< button "btn-link" >}}
+Link
+{{< /button >}}
+
+#### Outline Buttons
+With `.btn-outline-*` classes:
+
+```tpl
+{{</* button "btn-outline-primary" */>}}
+Primary
+{{</* /button */>}}
+```
+{{< button "btn-outline-primary" >}}
+Primary
+{{< /button >}}
+<br>
+
+**Examples:**
+
+{{< button "btn-outline-primary" >}}
+Primary
+{{< /button >}}
+
+{{< button "btn-outline-secondary" >}}
+Secondary
+{{< /button >}}
+
+{{< button "btn-outline-info" >}}
+Info
+{{< /button >}}
+
+{{< button "btn-outline-success" >}}
+Success
+{{< /button >}}
+
+{{< button "btn-outline-warning" >}}
+Warning
+{{< /button >}}
 
 ### Card
-
 Generic bootstrap card that displays content as body text.
 No additional parameters.
 
@@ -236,63 +305,6 @@ Also plays well with the columns short code:
 **Right Card**: some markdown text to display.
 {{< /card >}}
 {{< /columns >}}
-
-### Chart
-Wrapper shortcode to render a `chart.js` chart directly in markdown.
-Automatically includes the chart.js library.
-Optional parameters:
-- pos 0: width in percent
-- pos 1: height in pixels
-
-**Usage**:
-
-```tpl
-{{</* chart "80%" 100 */>}}
-{
-    type: 'doughnut',
-    data: {
-        labels: ['Assignments', 'Exams', 'Reading / Participation'],
-        datasets: [{
-            label: 'Percent',
-            data: [60, 30, 10],
-        }]
-    },
-    options: {
-		indexAxis: 'y',
-        maintainAspectRatio: false,
-		plugins: {
-			legend: {
-				display: false
-			}
-		}
-    }
-}
-{{</* /chart */>}}
-```
-
-**Example**:
-
-{{< chart "80%" 100 >}}
-{
-    type: 'doughnut',
-    data: {
-        labels: ['Assignments', 'Exams', 'Reading / Participation'],
-        datasets: [{
-            label: 'Percent',
-            data: [60, 30, 10],
-        }]
-    },
-    options: {
-		indexAxis: 'y',
-        maintainAspectRatio: false,
-		plugins: {
-			legend: {
-				display: false
-			}
-		}
-    }
-}
-{{< /chart >}}
 
 ### Columns
 
@@ -446,10 +458,186 @@ Some inner text
 Some inner text that starts visible
 {{< /details >}}
 
+### Table
+Wrapper shortcode to use bootstrap table classes for markdown tables.
+Pass classes as parameters, markdown table as inner content.
+- Modified from: https://stackoverflow.com/questions/64609165/how-to-give-a-hugo-markdown-table-a-class-when-the-table-contains-shortcodes
+
+**Usage**:
+
+```tpl
+{{</* table "table-striped col-auto" */>}}
+|  |  |
+|-------------------|-----------------------------------------|
+| Format            | In-person, recorded|
+| Credits           | 3 |
+| Meeting Times	    | 6:00 am |
+| Meeting Location  | Earth |
+| Instructor        | Dr. Doe |
+{{</* /table */>}}
+```
+
+**Example**:
+
+{{< table "table-striped col-auto" >}}
+|  |  |
+|-------------------|-----------------------------------------|
+| Format            | In-person, recorded|
+| Credits           | 3 |
+| Meeting Times	    | 6:00 am |
+| Meeting Location  | Earth |
+| Instructor        | Dr. Doe |
+{{< /table >}}
+
+---
+
+## Custom Shortcodes
+
+Custom shortcodes for this theme (mostly focused around class schedules).
+
+### Assignment
+
+Assignment shortcode with multiple displays of assignment data from `/data/assignments.toml`.
+Real-world examples on the [assignments](/assignments) page.
+
+Example data entry:
+```toml
+[a1]
+id 			= "a1"
+name	 	= "Assignment 01"
+short_name 	= "A01"
+url 		= "/schedule#a1"
+page		= "/assignments/a1"
+date 		= "2024-07-21T13:59:59"
+color		= "bg-secondary"
+```
+
+Shortcode parameters:
+- pos 0, "id": Specific assignment selected by `id` field from `/data/assignments.toml`.
+- pos 1, "type": optional type to control what data is displayed (see examples below for all options).
+
+
+#### Default
+Without any type just renders assignment title with link to assignment `page` if provided:
+```tpl
+{{</* assignment "a1" */>}}
+```
+{{< assignment "a1" >}}
+
+#### badge
+type=`badge` renders as badge with link to assignment `url` if provided.
+- Different badge color optionally set by a `color` variable in the data file. Color options follow the Bootstrap 5 badge format, e.g., `bg-primary`, `bg-info`, etc.
+- Theme has custom additional badge classes for more colors; `bg-blue`, `bg-purple` etc.
+- Color class can be combined with text classes for hard to read text colors, e.g. `color = "bg-warning text-dark"`
+
+```tpl
+{{</* assignment "a1" "badge" */>}}
+{{</* assignment "a2" "badge" */>}}
+```
+{{< assignment "a1" "badge" >}} <br>
+{{< assignment "a2" "badge" >}}
+
+#### date
+type=`date` renders due date and time:
+```tpl
+{{</* assignment "a1" "date" */>}}
+```
+{{< assignment "a1" "date" >}}
+
+#### countdown
+type=`countdown` renders a countdown for the time in the `date` field.
+Should be timezone aware using the `moments.js` library (not extensively tested), assumes EST (`America/NewYork`) time for the provided `date` data:
+```tpl
+{{</* assignment "a1" "countdown" */>}}
+{{</* assignment "a2" "countdown" */>}}
+```
+{{< assignment "a1" "countdown" >}} <br>
+{{< assignment "a2" "countdown" >}}
+
+### Chart
+Wrapper shortcode to render a `chart.js` chart directly in markdown.
+Automatically includes the chart.js library.
+Optional parameters:
+- pos 0: width in percent
+- pos 1: height in pixels
+
+**Usage**:
+
+```tpl
+{{</* chart "80%" 100 */>}}
+{
+    type: 'doughnut',
+    data: {
+        labels: ['Assignments', 'Exams', 'Reading / Participation'],
+        datasets: [{
+            label: 'Percent',
+            data: [60, 30, 10],
+        }]
+    },
+    options: {
+		indexAxis: 'y',
+        maintainAspectRatio: false,
+		plugins: {
+			legend: {
+				display: false
+			}
+		}
+    }
+}
+{{</* /chart */>}}
+```
+
+**Example**:
+
+{{< chart "80%" 100 >}}
+{
+    type: 'doughnut',
+    data: {
+        labels: ['Assignments', 'Exams', 'Reading / Participation'],
+        datasets: [{
+            label: 'Percent',
+            data: [60, 30, 10],
+        }]
+    },
+    options: {
+		indexAxis: 'y',
+        maintainAspectRatio: false,
+		plugins: {
+			legend: {
+				display: false
+			}
+		}
+    }
+}
+{{< /chart >}}
+
 ### Schedule
 Collection of 3 mostly independent shortcodes `week`, `happening`, and `lecture` to render a schedule using Bootstrap 5 cards (see [schedule](/schedule) for real-world examples).
 - All 3 shortcodes can automatically compute and display dates if a `startDate  = 2024-08-19` (first Monday of the semester) variable is set in the page frontmatter. Otherwise they will fall back to not showing specific dates.
 - **Note** that all schedule shortcodes need to be initiated with `{{%/* */%}}`, **not** the usual `{{</* */>}}` because the week shortcode needs to appear early in the rendering pipeline to show up in the ToC and the other shortcodes need to appear in the same context for shared variables.
+
+A combined use of the three shortcodes in a schedule could look like this:
+
+```tpl
+// Start of the first week
+{{%/* schedule/week title="First Week" */%}}
+
+// No class on Monday
+{{%/* schedule/happening "mon" "noclass" */%}}
+Labor Day - **No Classes**, University Closed
+{{%/* /schedule/happening */%}}
+
+// Lecture "lec-intro" on Tuesday
+{{%/* schedule/lecture "tue" "lec-intro" */%}}
+
+// Lecture "lec-hcs" on Thursday
+{{%/* schedule/lecture "thu" "lec-hcs" */%}}
+
+// A Deadline on Friday
+{{%/* schedule/happening "fri" "deadline" "11:59pm" */%}}
+**Deadline**: [Assignment 1](/#example) (11:59pm)
+{{%/* /schedule/happening */%}}
+```
 
 #### Week
 Displays a week heading (also shows up in ToC).
@@ -597,35 +785,3 @@ With `recorded = true` set in shortcode:
 {{%/* schedule/lecture "tue" "lec-intro" "true" */%}}
 ```
 {{% schedule/lecture "tue" "lec-intro" "true" %}}
-
-
-### Table
-Wrapper shortcode to use bootstrap table classes for markdown tables.
-Pass classes as parameters, markdown table as inner content.
-- Modified from: https://stackoverflow.com/questions/64609165/how-to-give-a-hugo-markdown-table-a-class-when-the-table-contains-shortcodes
-
-**Usage**:
-
-```tpl
-{{</* table "table-striped col-auto" */>}}
-|  |  |
-|-------------------|-----------------------------------------|
-| Format            | In-person, recorded|
-| Credits           | 3 |
-| Meeting Times	    | 6:00 am |
-| Meeting Location  | Earth |
-| Instructor        | Dr. Doe |
-{{</* /table */>}}
-```
-
-**Example**:
-
-{{< table "table-striped col-auto" >}}
-|  |  |
-|-------------------|-----------------------------------------|
-| Format            | In-person, recorded|
-| Credits           | 3 |
-| Meeting Times	    | 6:00 am |
-| Meeting Location  | Earth |
-| Instructor        | Dr. Doe |
-{{< /table >}}
