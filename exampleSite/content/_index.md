@@ -306,7 +306,37 @@ Also plays well with the columns short code:
 {{< /card >}}
 {{< /columns >}}
 
+### Col & Row
+Bootstrap column & row class wrappers.
+- Bootstrap documentation: https://getbootstrap.com/docs/5.3/layout/grid/
+- Bootstrap grid works with 12 vertical, i.e., col-8 will leave 4 vertical slots for remaining columns.
+
+```tpl
+{{</* row */>}}
+{{</* col */>}}
+Column 1
+{{</* /col */>}}
+{{</* col "col-6" */>}}
+Column 2 (Larger)
+{{</* /col */>}}
+{{</* /row */>}}
+```
+{{< row >}}
+{{< col >}}
+#### Column 1
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+{{< /col >}}
+{{< col "col-8" >}}
+#### Column 2 (Larger)
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+{{< /col >}}
+{{< /row >}}
+
 ### Columns
+
+{{< alert "alert-warning" >}}
+**Deprecation Warning**: non-bootstrap `columns` shortcode will be deprecated in the future in favor of the bootstrap-native `row` and `col`.
+{{< /alert >}}
 
 Shortcode to generate two columns.
 - `width` as optional parameter to set maximum width for each column in px (will wrap if wider).
