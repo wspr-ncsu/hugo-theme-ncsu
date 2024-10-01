@@ -2,6 +2,10 @@
 
 (Unofficial) [Hugo](https://github.com/gohugoio/hugo) (static site generator written in Go) theme using Bootstrap 5 and inspired by the NC State branding and resources.
 
+Documentation:
+- https://wspr-ncsu.github.io/hugo-theme-ncsu/
+- Also included in theme itself in `exampleSite` as website using the theme
+
 Examples: 
 - https://csc591.dwermke.com/
 
