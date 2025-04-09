@@ -1,0 +1,11 @@
+<!-- Static Scripts -->
+<script src="https://cdn.ncsu.edu/brand-assets/utility-bar/v3/ncstate-utility-bar.js"></script>
+<script src={{ "/bootstrap/js/bootstrap.bundle.min.js" | absURL }}></script>
+<!-- Dynamic Scripts Block -->
+{{- $scripts := .Scratch.Get "scripts" }}
+{{- if $scripts }}
+	{{- range $scripts | uniq }}
+		{{ $script := resources.Get . | fingerprint }}
+		<script src="{{ $script.RelPermalink }}" defer></script>
+	{{- end }}
+{{- end }}

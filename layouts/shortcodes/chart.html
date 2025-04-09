@@ -9,7 +9,10 @@
 <div style="margin: 0 auto;">
 	<canvas id="{{ $id }}" width="{{$w}}" height="{{$h}}"></canvas>
 </div>
-<script type="module" src="/js/chart.umd.js"></script>
+
+<!-- Register script (only once) -->
+{{ $.Page.Scratch.Add "scripts" "js/chart.umd.js" }}
+
 <script type="text/javascript">
 	document.addEventListener("DOMContentLoaded", function () {
 		var ctx = document.getElementById('{{ $id }}').getContext('2d');
