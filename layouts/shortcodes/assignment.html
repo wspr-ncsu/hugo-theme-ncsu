@@ -22,35 +22,12 @@
 				<span class="badge {{ $color }}" >{{- .short_name -}}</span>
 			{{- end -}}
 		{{- else if eq $format "countdown" -}}
-			<span id="countdown-{{ .id }}" class="countdown-timer" data-date="{{ .date }}"></span>
-
-			{{- $.Page.Scratch.Add "scripts" "js/moment.min.js" -}}
-			{{- $.Page.Scratch.Add "scripts" "js/moment-timezone-with-data-10-year-range.min.js" -}}
-
-			<script type="text/javascript">
-				document.addEventListener("DOMContentLoaded", function() {
-					const timer = document.getElementById('countdown-{{ .id }}');
-					const targetDate = moment.tz(timer.getAttribute('data-date'), "America/New_York");
-
-					function updateCountdown() {
-						const now = moment();
-						const duration = moment.duration(targetDate.diff(now));
-
-						const days = Math.floor(duration.asDays());
-						const hours = duration.hours();
-						const minutes = duration.minutes();
-						const seconds = duration.seconds();
-
-						if (duration.asMilliseconds() > 0) {
-							timer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-						} else {
-							timer.innerHTML = "Expired";
-						}
-					}
-					updateCountdown();
-					setInterval(updateCountdown, 1000);
-				});
-			</script>
+			<span class="countdown-timer" data-date="{{ .date }}" data-tz="America/New_York"></span>
+			{{- $scripts := $.Page.Store.Get "scripts" | default (slice) -}}
+			{{- $scripts = $scripts | append "js/moment.min.js" -}}
+			{{- $scripts = $scripts | append "js/moment-timezone-with-data-10-year-range.min.js" -}}
+			{{- $scripts = $scripts | append "js/countdown.js" -}}
+			{{- $.Page.Store.Set "scripts" $scripts -}}
 		{{- else -}}
 			{{- if isset . "page" -}}
 				<span><a class href="{{ .page }}">{{- .name -}}</a></span>

@@ -6,7 +6,7 @@ Documentation:
 - https://wspr-ncsu.github.io/hugo-theme-ncsu/
 - Also included in theme itself in `exampleSite` as website using the theme
 
-Examples: 
+Examples:
 - https://csc591.dwermke.com/
 
 Older versions using the `bs3` template (see releases):
@@ -31,13 +31,13 @@ Documentation is accessible at http://127.0.0.1:1313
     ```sh
     $ hugo version
     ```
-    2. Create new Hugo website structure 
+    2. Create new Hugo website structure
     ```sh
     $ hugo new site [project name]
     ```
 3. Add this theme as submodule in the `themes` folder:
 ```sh
-$ cd [project name]/themes 
+$ cd [project name]/themes
 $ git submodule add [this repo url]
 ```
 - (Optional) Freeze submodule to specific release (tag):

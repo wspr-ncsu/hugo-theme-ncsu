@@ -1,4 +1,4 @@
-{{- $weekNumber := $.Page.Scratch.Get "currentWeek" | default 1 | int -}}
+{{- $weekNumber := $.Page.Store.Get "currentWeek" | default 1 | int -}}
 {{- $day := cond .IsNamedParams (.Get "day") (.Get 0) -}}
 {{- $type := cond .IsNamedParams (.Get "type") (.Get 1) -}}
 {{- $time := cond .IsNamedParams (.Get "time") (.Get 2) -}}

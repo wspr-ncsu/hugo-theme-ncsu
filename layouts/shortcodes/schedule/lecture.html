@@ -1,11 +1,11 @@
-{{- $weekNumber := $.Page.Scratch.Get "currentWeek" | default 1 | int -}}
+{{- $weekNumber := $.Page.Store.Get "currentWeek" | default 1 | int -}}
 {{- $day := cond .IsNamedParams (.Get "day") (.Get 0) -}}
 {{- $lectureID := cond .IsNamedParams (.Get "id") (.Get 1) -}}
 {{- $recorded := cond .IsNamedParams (.Get "recorded") (.Get 2) -}}
 
 {{/* Initialize or increment the lecture counter for display in the title */}}
-{{- $lectureCounter := $.Page.Scratch.Get "lectureCounter" | default 0 | add 1 -}}
-{{- $.Page.Scratch.Set "lectureCounter" $lectureCounter -}}
+{{- $lectureCounter := $.Page.Store.Get "lectureCounter" | default 0 | add 1 -}}
+{{- $.Page.Store.Set "lectureCounter" $lectureCounter -}}
 
 {{- $startDate := false -}}
 {{- $currentDay := false -}}
