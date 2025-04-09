@@ -3,15 +3,15 @@
     {{ $segments := split (trim $url "/") "/" }}
     {{ if gt (len $segments) 1 }}
     <ol class="breadcrumb">
-        {{ $.Scratch.Add "path" .Site.BaseURL }}
+        {{ $.Store.Add "path" .Site.BaseURL }}
         {{ range $index, $element := $segments }}
-            {{ $.Scratch.Add "path" $element }}
+            {{ $.Store.Add "path" $element }}
             {{ if eq (add $index 1) (len $segments) }}
                 <li class="breadcrumb-item active" aria-current="page">{{ . }}</li>
             {{ else }}
-                <li class="breadcrumb-item"><a href='{{ $.Scratch.Get "path" }}'>{{ . }}</a></li>
+                <li class="breadcrumb-item"><a href='{{ $.Store.Get "path" }}'>{{ . }}</a></li>
             {{ end }}
-            {{ $.Scratch.Add "path" "/" }}
+            {{ $.Store.Add "path" "/" }}
         {{ end }}
     </ol>
     {{ end }}

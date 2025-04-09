@@ -7,9 +7,9 @@ theme = "hugo-theme-ncsu"
 	# Theme specific setting
 	showToC = true # ToC on the right
 	showSidebar = true # Sidebar on the left
-	showWIP	= true # 'Work in progress' message on every page
+	showWIP	= false # 'Work in progress' message on every page
 	showFooter = true  # Site footer with some lecture info
-	# Course variables 
+	# Course variables
 	iteration = "Fall 2024"
 	year = "2024"
 	cshort = "CSC XXX"
@@ -33,11 +33,16 @@ sectionPagesMenu = "main"
 		name = "About"
 		URL = "/"
 		weight = 1
+	# [[menu.main]]
+	# 	identifier = "documentation"
+	# 	name = "Documentation"
+	# 	URL = "/documentation/"
+	# 	weight = 2
 	[[menu.main]]
 		identifier = "schedule"
 		name = "Schedule"
 		URL = "/schedule/"
-		weight = 2
+		weight = 3
 	# [[menu.main]]
 	# 	identifier = "assignments"
 	# 	name = "Assignments"

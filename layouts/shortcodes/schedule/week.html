@@ -1,6 +1,6 @@
 {{/* Week Shortcode */}}
 {{- $param := cond (.IsNamedParams) (.Get "week") (cond (gt (len .Params) 0) (.Get 0) "") -}}
-{{- $number := $.Page.Scratch.Get "currentWeek" | default 0 | int -}}
+{{- $number := $.Page.Store.Get "currentWeek" | default 0 | int -}}
 {{- if and (ne $param "") (ge (len (printf "%d" $param)) 1) (ge $param "0") -}}
     {{- $number = $param | int -}}
 {{- else -}}
@@ -22,4 +22,4 @@
 <small style="color:grey;">{{ $currentMonday.Format "Monday, 2006-01-02" }} - {{ $currentFriday.Format "Friday, 2006-01-02" }}</small>
 {{- end -}}
 
-{{- $.Page.Scratch.Set "currentWeek" $number -}}
+{{- $.Page.Store.Set "currentWeek" $number -}}
