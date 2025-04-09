@@ -1,7 +1,7 @@
 <nav id="site-menu" class="navbar navbar-expand-md navbar-light">
 	<div class="container-fluid">
 		<a class="navbar-brand" href="/">
-			<img src="/logo.png" alt="Brand Logo" class="brand-logo" style="margin-right: 10px;">
+			<img src={{ "/logo.png" | absURL }} alt="Brand Logo" class="brand-logo" style="margin-right: 10px;">
 			<div class="brand-text">
 				<strong>{{ site.Params.clong }}</strong><br>
 				<small class="text-muted">{{ site.Params.cshort }} - {{ site.Params.iteration}}</small>
