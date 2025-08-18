@@ -1,0 +1,31 @@
+{{/* layouts/partials/resolve-needs.html */}}
+{{- $map := dict
+  "chart"      (dict "asset" "js/chart.umd.js" "static" "js/chart.umd.js")
+  "moment"     (dict "asset" "js/moment.min.js" "static" "js/moment.min.js")
+  "moment-tz"  (dict "asset" "js/moment-timezone-with-data-10-year-range.min.js" "static" "js/moment-timezone-with-data-10-year-range.min.js")
+  "countdown"  (dict "asset" "js/countdown.js" "static" "js/countdown.js")
+-}}
+
+{{- $needs := .Page.Store.Get "needs" | default (slice) | uniq -}}
+{{- range $needs -}}
+  {{- $e := index $map . -}}
+  {{- if not $e -}}
+    {{- errorf "Unknown need %q. Add mapping in partials/resolve-needs.html. Page=%q" . $.Page.File.Path -}}
+  {{- end -}}
+
+  {{- $asset := index $e "asset" -}}
+  {{- $static := index $e "static" -}}
+
+  {{- $res := resources.Get $asset -}}
+  {{- if $res -}}
+    {{- $r := $res | fingerprint -}}
+    <script src="{{ $r.RelPermalink }}" defer></script>
+  {{- else -}}
+    {{- $staticPath := printf "static/%s" $static -}}
+    {{- if fileExists $staticPath -}}
+      <script src="{{ $static | relURL }}" defer></script>
+    {{- else -}}
+      {{- errorf "Missing asset for %q. Looked in assets/%s and static/%s. Page=%q" . $asset $static $.Page.File.Path -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}

@@ -2,6 +2,10 @@
 {{ $h := default "300" (.Get 1) }}
 {{ $r := ( .Inner | chomp) }}
 
+{{- $needs := $.Page.Store.Get "needs" | default (slice) -}}
+{{- if not (in $needs "chart") -}}
+	{{- $.Page.Store.Set "needs" ( $needs | append "chart" ) -}}
+{{- end -}}
 
 {{- $number := $.Page.Store.Get "chartID" | default 0 | int -}}
 {{ $id := printf "chart-%d" $number }}
@@ -9,9 +13,6 @@
 <div style="margin: 0 auto;">
 	<canvas id="{{ $id }}" width="{{$w}}" height="{{$h}}"></canvas>
 </div>
-
-{{- $scripts := $.Page.Store.Get "scripts" | default (slice) -}}
-{{- $.Page.Store.Set "scripts" ( $scripts | append "js/chart.umd.js" ) -}}
 
 <script defer>
 	document.addEventListener("DOMContentLoaded", function () {

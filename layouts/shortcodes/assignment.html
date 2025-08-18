@@ -23,11 +23,11 @@
 			{{- end -}}
 		{{- else if eq $format "countdown" -}}
 			<span class="countdown-timer" data-date="{{ .date }}" data-tz="America/New_York"></span>
-			{{- $scripts := $.Page.Store.Get "scripts" | default (slice) -}}
-			{{- $scripts = $scripts | append "js/moment.min.js" -}}
-			{{- $scripts = $scripts | append "js/moment-timezone-with-data-10-year-range.min.js" -}}
-			{{- $scripts = $scripts | append "js/countdown.js" -}}
-			{{- $.Page.Store.Set "scripts" $scripts -}}
+			{{- $needs := $.Page.Store.Get "needs" | default (slice) -}}
+			{{- if not (in $needs "moment") -}}{{- $needs = $needs | append "moment" -}}{{- end -}}
+			{{- if not (in $needs "moment-tz") -}}{{- $needs = $needs | append "moment-tz" -}}{{- end -}}
+			{{- if not (in $needs "countdown") -}}{{- $needs = $needs | append "countdown" -}}{{- end -}}
+			{{- $.Page.Store.Set "needs" $needs -}}
 		{{- else -}}
 			{{- if isset . "page" -}}
 				<span><a class href="{{ .page }}">{{- .name -}}</a></span>
