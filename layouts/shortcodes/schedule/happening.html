@@ -13,9 +13,9 @@
 	{{- $currentDay = $currentMonday.AddDate 0 0 $dayOffset -}}
 {{- end -}}
 
-<div class="px-4">
+<div>
 {{- if eq $type "deadline" -}}
-<div class="card border-danger mb-1">
+	<div class="card border-danger ms-0 ms-sm-2 ms-md-4 mt-2 mb-2">
 	<div class="card-header d-flex flex-row justify-content-between text-danger border-danger">
 		{{- if $startDate -}}
 		<div><b>{{ $currentDay.Format "Mon"}}</b> - {{ $currentDay.Format "Jan 02, 2006" }}</div>
@@ -31,7 +31,7 @@
 </div>
 </div>
 {{- else if eq $type "noclass" -}}
-<div class="card text-bg-success ml-2 mb-1">
+	<div class="card text-bg-success ms-0 ms-sm-2 ms-md-4 mt-2 mb-2">
 	<div class="card-header">
 		{{- if $startDate -}}
 		<span><b>{{ $currentDay.Format "Mon"}}</b> - {{ $currentDay.Format "Jan 02, 2006" }}</span>
@@ -43,7 +43,7 @@
 </div>
 </div>
 {{- else if eq $type "exam" -}}
-<div class="card text-bg-danger ml-2 mt-2 mb-2">
+	<div class="card text-bg-danger ms-0 ms-sm-2 ms-md-4 mt-2 mb-2">
 	<div class="card-header d-flex flex-row justify-content-between">
 		{{- if $startDate -}}
 		<div><b>{{ $currentDay.Format "Mon"}}</b> - {{ $currentDay.Format "Jan 02, 2006" }}</div>
@@ -59,7 +59,7 @@
 </div>
 </div>
 {{- else -}}
-<div class="card ml-2 mb-1">
+<div class="card ms-0 ms-sm-2 ms-md-4 mt-2 mb-2">
 	<div class="card-header">
 		{{- if $startDate -}}
 			<span class="text-body-secondary"><b>{{ $currentDay.Format "Mon"}}</b> - {{ $currentDay.Format "Jan 02, 2006" }}</span>

@@ -24,8 +24,8 @@
 
 {{- range $.Site.Data.lectures -}}
 {{- if eq .id $lectureID -}}
-<div class="px-4">
-	<div class="card ml-2 mt-2 mb-2">
+<div>
+	<div class="card ms-0 ms-sm-2 ms-md-4 mt-2 mb-2">
 		<div class="card-header d-flex flex-row justify-content-between">
 			<div>
 				{{- if $startDate}}
@@ -48,96 +48,104 @@
 			{{- end -}}
 		</div>
 		<div class="card-body">
-			<div class="h5">
-				<span class="text-body-secondary">
-					{{- if .short -}}
-					{{- .short -}}
-					{{- else -}}
-					Lecture {{ $lectureCounter }}:
+			<div class="row g-3 align-items-center">
+				<div class="col-md-8 col-12 order-2 order-md-1">
+					<div class="h5">
+						<span class="text-body-secondary">
+							{{- if .short -}}{{ .short }}{{- else -}}Lecture {{ $lectureCounter }}:{{- end -}}
+						</span> <b>{{ .title }}</b>
+						{{- if $recorded -}}<span class="text-body-secondary"> (Pre-recorded)</span>{{- end -}}
+					</div>
+					{{- if $recorded -}}
+					<div><b>📹 Pre-recorded lecture</b>, no in-person class.</div>
 					{{- end -}}
-				</span> <b>{{ .title -}}</b>
-			{{- if $recorded -}}
-			<span class="text-body-secondary"> (Pre-recorded)</span>
-			{{- end -}}
-			</div>
-			{{- if $recorded -}}
-			<div>
-				<b>📹 Pre-recorded lecture</b>, no in-person class.
-			</div>
-			{{- end -}}
-			{{- if .description }}
-			<div class="small text-secondary">
-				{{ .description | markdownify }}
-			</div>
-			{{- end -}}
-			{{- if .note }}
-			<div>
-				{{ .note | markdownify }}
-			</div>
-			{{- end -}}
-			{{- if .slides }}
-			<a href="{{- .slides -}}">Slides</a>
-			{{- if .recording -}}
-			, <a href="{{- .recording -}}">Recording</a>
-			{{- end -}}
-			{{- end -}}
-			{{- $resourcesMap := dict "paper" "🗎" "book" "🕮" "video" "📹" "presentation" "🖥️" "website" "🌐" "podcast" "🎧" -}}
-
-			{{- range (sort $.Site.Data.lectures "id" "desc") -}}
-			{{- if eq .id $lectureID -}}
-			<div class="list-group mt-2">
-				{{- if isset . "discussion" -}}
-				<div class="list-group-item list-group-item-light small">
-					<b>Discussion</b>:
-					<ul>
-						{{- range $key, $value := .discussion -}}
-						<li>
-							{{ index $resourcesMap $value.type }}
-							{{- if $value.authors }} {{ $value.authors }},{{ end -}}
-							{{ if $value.url }} <a href="{{ $value.url }}">{{ $value.title }}</a>{{ else }} {{ $value.title }}{{ end }}
-							{{- if $value.venue }}, {{ $value.venue }}{{ end -}}
-							{{- if $value.date }}, {{ $value.date }}.{{ end -}}
+					{{- if .description }}
+					<div class="small text-secondary">{{ .description | markdownify }}</div>
+					{{- end -}}
+					{{- if .note }}
+					<div>{{ .note | markdownify }}</div>
+					{{- end -}}
+					<ul class="list-unstyled mt-2">
+						{{- if .slides }}
+						{{- $u := urls.Parse .slides }}
+						<li>🖥️ <a href="{{ .slides }}">Slides</a>
+							<span class="small text-secondary">({{ $u.Host }})</span>
+						</li>
+						{{- end -}}
+						{{- if .recording }}
+						{{- $r := urls.Parse .recording }}
+						<li>🎥 <a href="{{ .recording }}">Recording</a>
+							<span class="small text-secondary">({{ $r.Host }})</span>
 						</li>
 						{{- end -}}
 					</ul>
 				</div>
-				{{- end -}}
-				{{- if isset . "mentioned" -}}
-				<div class="list-group-item list-group-item-light small">
-					<b>Mentioned Resources</b>:
-					<ul>
-						{{- range $key, $value := .mentioned -}}
-						<li>
-							{{ index $resourcesMap $value.type }}
-							{{- if $value.authors }} {{ $value.authors }},{{ end -}}
-							{{ if $value.url }} <a href="{{ $value.url }}">{{ $value.title }}</a>{{ else }} {{ $value.title }}{{ end }}
-							{{- if $value.venue }}, {{ $value.venue }}{{ end -}}
-							{{- if $value.date }}, {{ $value.date }}.{{ end -}}
-						</li>
-						{{- end -}}
-					</ul>
-				</div>
-				{{- end -}}
-				{{- if isset . "additional" -}}
-				<div class="list-group-item list-group-item-light small"><b>Additional Material</b>:
-					<ul>
-						{{- range $key, $value := .additional -}}
-						<li>
-							{{ index $resourcesMap $value.type }}
-							{{- if $value.authors }} {{ $value.authors }},{{ end -}}
-							{{ if $value.url }} <a href="{{ $value.url }}">{{ $value.title }}</a>{{ else }} {{ $value.title }}{{ end }}
-							{{- if $value.venue }}, {{ $value.venue }}{{ end -}}
-							{{- if $value.date }}, {{ $value.date }}.{{ end }}
-						</li>
-						{{- end -}}
-					</ul>
+				{{- if .cover }}
+				<div class="col-md-4 col-12 text-center order-1 order-md-2">
+					<img src="{{ .cover | relURL }}"
+						 class="img-fluid rounded shadow-sm"
+						 alt="Cover slide for {{ .title }}"
+						 style="max-height: 120px; object-fit: cover;">
 				</div>
 				{{- end -}}
 			</div>
 		</div>
-		{{- end -}}
-		{{- end -}}
+		{{- $resourcesMap := dict "paper" "🗎" "book" "🕮" "video" "📹" "presentation" "🖥️" "website" "🌐" "podcast" "🎧" -}}
+
+		{{- range (sort $.Site.Data.lectures "id" "desc") -}}
+		{{- if eq .id $lectureID -}}
+		<div class="list-group m-2">
+			{{- if isset . "discussion" -}}
+			<div class="list-group-item list-group-item-light small">
+				<b>Discussion</b>:
+				<ul>
+					{{- range $key, $value := .discussion -}}
+					<li>
+						{{ index $resourcesMap $value.type }}
+						{{- if $value.authors }} {{ $value.authors }},{{ end -}}
+						{{ if $value.url }} <a href="{{ $value.url }}">{{ $value.title }}</a>{{ else }} {{ $value.title }}{{ end }}
+						{{- if $value.venue }}, {{ $value.venue }}{{ end -}}
+						{{- if $value.date }}, {{ $value.date }}.{{ end -}}
+					</li>
+					{{- end -}}
+				</ul>
+			</div>
+			{{- end -}}
+			{{- if isset . "mentioned" -}}
+			<div class="list-group-item list-group-item-light small">
+				<b>Mentioned Resources</b>:
+				<ul>
+					{{- range $key, $value := .mentioned -}}
+					<li>
+						{{ index $resourcesMap $value.type }}
+						{{- if $value.authors }} {{ $value.authors }},{{ end -}}
+						{{ if $value.url }} <a href="{{ $value.url }}">{{ $value.title }}</a>{{ else }} {{ $value.title }}{{ end }}
+						{{- if $value.venue }}, {{ $value.venue }}{{ end -}}
+						{{- if $value.date }}, {{ $value.date }}.{{ end -}}
+					</li>
+					{{- end -}}
+				</ul>
+			</div>
+			{{- end -}}
+			{{- if isset . "additional" -}}
+			<div class="list-group-item list-group-item-light small"><b>Additional Material</b>:
+				<ul>
+					{{- range $key, $value := .additional -}}
+					<li>
+						{{ index $resourcesMap $value.type }}
+						{{- if $value.authors }} {{ $value.authors }},{{ end -}}
+						{{ if $value.url }} <a href="{{ $value.url }}">{{ $value.title }}</a>{{ else }} {{ $value.title }}{{ end }}
+						{{- if $value.venue }}, {{ $value.venue }}{{ end -}}
+						{{- if $value.date }}, {{ $value.date }}.{{ end }}
+					</li>
+					{{- end -}}
+				</ul>
+			</div>
+			{{- end -}}
+		</div>
 	</div>
+	{{- end -}}
+	{{- end -}}
 </div>
 {{- end -}}
 {{- end -}}
