@@ -205,3 +205,11 @@ $badge-colors: (
 );
 
 @include generate-background-colors($badge-colors);
+
+// Overwrite link color on red background
+.text-bg-danger {
+    .link-secondary {
+        color: $white !important;
+        text-decoration-color: $white !important;
+    }
+}
