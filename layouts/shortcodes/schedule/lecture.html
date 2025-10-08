@@ -48,7 +48,7 @@
 			{{- end -}}
 		</div>
 		<div class="card-body">
-			<div class="row g-3 align-items-center">
+			<div class="row g-2 align-items-center">
 				<div class="col-md-8 col-12 order-2 order-md-1">
 					<div class="h5">
 						<span class="text-body-secondary">
@@ -89,12 +89,12 @@
 				</div>
 				{{- end -}}
 			</div>
-		</div>
 		{{- $resourcesMap := dict "paper" "🗎" "book" "🕮" "video" "📹" "presentation" "🖥️" "website" "🌐" "podcast" "🎧" -}}
 
 		{{- range (sort $.Site.Data.lectures "id" "desc") -}}
 		{{- if eq .id $lectureID -}}
-		<div class="list-group m-2">
+		{{- if or (isset . "discussion") (isset . "mentioned") (isset . "additional") -}}
+		<div class="list-group mt-2">
 			{{- if isset . "discussion" -}}
 			<div class="list-group-item list-group-item-light small">
 				<b>Discussion</b>:
@@ -143,6 +143,8 @@
 			</div>
 			{{- end -}}
 		</div>
+		</div>
+	{{- end -}}
 	</div>
 	{{- end -}}
 	{{- end -}}
