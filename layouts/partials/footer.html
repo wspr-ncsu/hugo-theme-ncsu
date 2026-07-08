@@ -5,9 +5,9 @@ This is the course website for the <b>{{ .Site.Params.iteration }}</b> offering 
 {{ .Site.Params.cdesc }}
 </p>
 
-<div style="display: flex; flex-direction: row; gap: 1em;">
+<div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 0.25rem 1em;">
 {{- range site.Menus.main }}
-<a style="color:grey;" href="{{ .URL | relURL }}">
+<a href="{{ .URL | relURL }}">
 	{{ .Name }}
 </a>
 {{- end }}

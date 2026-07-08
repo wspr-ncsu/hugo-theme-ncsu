@@ -1,0 +1,20 @@
+{{- $class := .Get 0 | default "" -}}
+<dl class="definition-list {{ $class }}">
+{{- range $line := split .Inner "\n" -}}
+  {{- $trimmed := trim $line " \t\r\n" -}}
+  {{- if and (in $trimmed "|") (not (hasPrefix $trimmed "<!--")) (not (findRE "^[\\s\\-:|]+$" $trimmed)) -}}
+    {{- $cleaned := replaceRE "^\\|" "" $trimmed | replaceRE "\\|$" "" -}}
+    {{- $cells := split $cleaned "|" -}}
+    {{- if ge (len $cells) 2 -}}
+      {{- $term := trim (index $cells 0) " \t\r\n" -}}
+      {{- $description := trim (delimit (after 1 $cells) "|") " \t\r\n" -}}
+      {{- if or $term $description -}}
+        <div class="definition-list-row">
+          <dt>{{ $term | markdownify }}</dt>
+          <dd>{{ $description | markdownify }}</dd>
+        </div>
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+</dl>

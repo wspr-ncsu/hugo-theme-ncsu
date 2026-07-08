@@ -19,7 +19,7 @@
 	{{- $elapsedDays := int (mul (sub $number 1) 7) -}}
 	{{- $currentMonday := $startDate.AddDate 0 0 $elapsedDays -}}
 	{{- $currentFriday := $currentMonday.AddDate 0 0 4 -}}
-<small style="color:grey;">{{ $currentMonday.Format "Monday, 2006-01-02" }} - {{ $currentFriday.Format "Friday, 2006-01-02" }}</small>
+<small class="schedule-week-dates">{{ $currentMonday.Format "Monday, 2006-01-02" }} - {{ $currentFriday.Format "Friday, 2006-01-02" }}</small>
 {{- end -}}
 
 {{- $.Page.Store.Set "currentWeek" $number -}}

@@ -33,31 +33,26 @@ sectionPagesMenu = "main"
 		name = "About"
 		URL = "/"
 		weight = 1
-	# [[menu.main]]
-	# 	identifier = "documentation"
-	# 	name = "Documentation"
-	# 	URL = "/documentation/"
-	# 	weight = 2
 	[[menu.main]]
-		identifier = "schedule"
-		name = "Schedule"
-		URL = "/schedule/"
+		identifier = "config"
+		name = "Config"
+		URL = "/config/"
+		weight = 2
+	[[menu.main]]
+		identifier = "shortcodes"
+		name = "Shortcodes"
+		URL = "/shortcodes/"
 		weight = 3
-	# [[menu.main]]
-	# 	identifier = "assignments"
-	# 	name = "Assignments"
-	# 	URL = "/assignments/"
-	# 	weight = 3
-	# [[menu.main]]
-	# 	identifier = "readings"
-	# 	name = "Readings"
-	# 	URL = "/readings/"
-	# 	weight = 4
-	# [[menu.main]]
-	# 	identifier = "syllabus"
-	# 	name = "Syllabus"
-	# 	URL = "/syllabus/"
-	# 	weight = 5
+	[[menu.main]]
+		identifier = "course-example"
+		name = "Course Example"
+		URL = "/course-example/"
+		weight = 4
+	[[menu.main]]
+		identifier = "markdown"
+		name = "Markdown"
+		URL = "/markdown/"
+		weight = 5
 
 [markup]
 	defaultMarkdownHandler = "goldmark"

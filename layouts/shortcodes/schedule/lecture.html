@@ -25,7 +25,7 @@
 {{- range $.Site.Data.lectures -}}
 {{- if eq .id $lectureID -}}
 <div>
-	<div class="card ms-0 ms-sm-2 ms-md-4 mt-2 mb-2">
+	<div class="card schedule-entry ms-0 ms-sm-2 ms-md-4 mt-2 mb-2">
 		<div class="card-header d-flex flex-row justify-content-between">
 			<div>
 				{{- if $startDate}}
@@ -83,7 +83,7 @@
 				{{- if .cover }}
 				<div class="col-md-4 col-12 text-center order-1 order-md-2">
 					<img src="{{ .cover | relURL }}"
-						 class="img-fluid rounded shadow-sm"
+						 class="img-fluid rounded shadow-sm border"
 						 alt="Cover slide for {{ .title }}"
 						 style="max-height: 120px; object-fit: cover;">
 				</div>
