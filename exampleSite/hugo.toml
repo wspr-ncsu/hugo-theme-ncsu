@@ -1,5 +1,5 @@
 baseURL = "" # Set by deploy script
-languageCode = "en-us"
+locale = "en-us"
 title = "CSC XXX - Example Lecture"
 theme = "hugo-theme-ncsu"
 

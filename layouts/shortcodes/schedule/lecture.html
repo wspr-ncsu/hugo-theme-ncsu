@@ -22,7 +22,7 @@
 {{- $lectureTime = .Page.Params.lectureTime -}}
 {{- end -}}
 
-{{- range $.Site.Data.lectures -}}
+{{- range hugo.Data.lectures -}}
 {{- if eq .id $lectureID -}}
 <div>
 	<div class="card schedule-entry ms-0 ms-sm-2 ms-md-4 mt-2 mb-2">
@@ -91,7 +91,7 @@
 			</div>
 		{{- $resourcesMap := dict "paper" "🗎" "book" "🕮" "video" "📹" "presentation" "🖥️" "website" "🌐" "podcast" "🎧" -}}
 
-		{{- range (sort $.Site.Data.lectures "id" "desc") -}}
+		{{- range (sort hugo.Data.lectures "id" "desc") -}}
 		{{- if eq .id $lectureID -}}
 		{{- if or (isset . "discussion") (isset . "mentioned") (isset . "additional") -}}
 		<div class="list-group mt-2">

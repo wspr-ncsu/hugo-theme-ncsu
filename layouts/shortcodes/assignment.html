@@ -1,7 +1,7 @@
 {{- $assignment := cond .IsNamedParams (.Get "id") (.Get 0) -}}
 {{- $format := cond .IsNamedParams (.Get "format") (.Get 1) -}}
 
-{{- range (sort $.Site.Data.assignments "id" "desc") -}}
+{{- range (sort hugo.Data.assignments "id" "desc") -}}
 	{{- if eq .id $assignment -}}
 		{{- if eq $format "date" -}}
 			<span>{{ time.Format "Mon, Jan 2 - 3:04pm" .date }} {{ .time }}</span>

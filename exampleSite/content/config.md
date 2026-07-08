@@ -14,13 +14,13 @@ General Hugo config options are listed in the [Hugo configuration documentation]
 
 ```toml
 baseURL = "" # Set by deploy script
-languageCode = "en-us"
+locale = "en-us"
 title = "NCSU Theme Documentation"
 theme = "hugo-theme-ncsu"
 ```
 
 - `baseURL`: Base URL for the deployed site. Set this to the course website root when manually deploying generated HTML.
-- `languageCode`: Displayed in the website header as the `lang` attribute.
+- `locale`: Displayed in the website header as the `lang` attribute.
 - `title`: Default website title displayed in browser tabs and search results when no page title is set.
 - `theme`: Name of this theme in the `themes` folder.
 
