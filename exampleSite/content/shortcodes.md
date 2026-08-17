@@ -564,9 +564,9 @@ Optional parameters:
 {{< /chart >}}
 
 ### Schedule
-Collection of 3 mostly independent shortcodes `week`, `happening`, and `lecture` to render a schedule using Bootstrap 5 cards. See [Course Example](/course-example/) for selected schedule examples in course context.
-- All 3 shortcodes can automatically compute and display dates if a `startDate  = 2024-08-19` (first Monday of the semester) variable is set in the page frontmatter. Otherwise they will fall back to not showing specific dates.
-- **Note** that all schedule shortcodes need to be initiated with `{{%/* */%}}`, **not** the usual `{{</* */>}}` because the week shortcode needs to appear early in the rendering pipeline to show up in the ToC and the other shortcodes need to appear in the same context for shared variables.
+Collection of mostly independent shortcodes `overview`, `week`, `happening`, and `lecture` to render a course schedule using Bootstrap 5 cards and compact overview cells. See [Course Example](/course-example/) for selected schedule examples in course context.
+- `week`, `happening`, and `lecture` can automatically compute and display dates if a `startDate  = 2024-08-19` (first Monday of the semester) variable is set in the page frontmatter. Otherwise they will fall back to not showing specific dates.
+- **Note** that `week`, `happening`, and `lecture` need to be initiated with `{{%/* */%}}`, **not** the usual `{{</* */>}}` because the week shortcode needs to appear early in the rendering pipeline to show up in the ToC and the other shortcodes need to appear in the same context for shared variables. Use `{{</* */>}}` for `overview`.
 
 A combined use of the three shortcodes in a schedule could look like this:
 
@@ -590,6 +590,40 @@ Labor Day - **No Classes**, University Closed
 **Deadline**: [Assignment 1](/#example) (11:59pm)
 {{%/* /schedule/happening */%}}
 ```
+
+#### Overview
+Renders a compact Monday-Friday grid from `/data/lectures.toml`, `/data/happenings.toml`, and `/data/assignments.toml`.
+
+The overview shows:
+- lecture cells from lecture entries whose `date` matches a displayed day
+- no-class cells from happening entries with `kind = "noclass"`
+- exam cells from assignment entries with `type = "exam"`
+- assignment due badges from assignment entries with `date`, using each assignment's Bootstrap `color` class when provided
+- a browser-local current-day marker when today appears in the displayed range
+
+Generic happenings are intentionally omitted from the overview. Empty days remain visible so the grid keeps a consistent weekday layout.
+For exams, add an assignment-style record with `type = "exam"`:
+
+```toml
+[midterm]
+id = "midterm"
+type = "exam"
+name = "Midterm Exam"
+short_name = "Midterm"
+date = "2024-09-05T18:00:00"
+color = "bg-danger"
+```
+
+**Usage**:
+
+```tpl
+{{</* schedule/overview start="2024-08-19" weeks="16" */>}}
+{{</* schedule/overview "2024-08-19" "16" */>}}
+```
+
+Parameters:
+- named `start` or `startDate`, positional 0: first Monday to display. If omitted, falls back to the page `startDate` frontmatter variable.
+- named `weeks`, positional 1: number of weeks to display. Defaults to `17`.
 
 #### Week
 Displays a week heading (also shows up in ToC).

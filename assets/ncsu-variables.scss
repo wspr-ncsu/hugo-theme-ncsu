@@ -60,6 +60,19 @@ $light:         $gray-100 !default;
 $dark:          $gray-900 !default;
 // scss-docs-end theme-color-variables
 
+$theme-colors: (
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark,
+  "blue":       $blue,
+  "purple":     $purple
+) !default;
+
 $font-family-sans-serif: Inter, Roboto, system-ui, sans-serif !default;
 $font-family-serif: serif !default;
 $font-family-monospace: "Source Code Pro", ui-monospace, monospace !default;

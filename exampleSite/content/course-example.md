@@ -59,7 +59,9 @@ Research or implementation work that builds across the semester.
 
 ## Schedule Excerpt
 
-These examples use `/data/lectures.toml`, `/data/assignments.toml`, `startDate`, and `lectureTime`.
+These examples use `/data/lectures.toml`, `/data/happenings.toml`, `/data/assignments.toml`, `startDate`, and `lectureTime`.
+
+{{< schedule/overview start="2024-08-19" weeks="4" >}}
 
 <!-- Week 1 -->
 {{% schedule/week title="First Week" %}}
@@ -98,6 +100,11 @@ Labor Day - **No Classes**, University Closed
 {{% /schedule/happening %}}
 
 {{% schedule/lecture day="wed" id="lec-exp1" recorded=false time="XYZ pm" %}}
+
+{{% schedule/happening "thu" "exam" "6:00pm" %}}
+### Midterm Exam
+- More info: {{% assignment "midterm" %}}
+{{% /schedule/happening %}}
 
 ## Where Things Live
 

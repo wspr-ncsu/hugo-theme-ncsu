@@ -1,0 +1,20 @@
+# Course-calendar events used by the condensed schedule overview.
+# Assignment deadlines and exams come from data/assignments.toml.
+
+[first_day]
+date = "2024-08-19"
+title = "First day of classes"
+
+[labor_day]
+date = "2024-09-02"
+kind = "noclass"
+title = "Labor Day - No Classes, University Closed"
+
+[fall_break]
+date = "2024-10-14"
+kind = "noclass"
+title = "Fall Break - No Classes"
+
+[reading_day]
+date = "2024-12-04"
+title = "Reading Day"

@@ -116,6 +116,16 @@ url = "/course-example#A01"
 page = "/course-example#A01"
 date = "2024-07-21T13:59:59"
 color = "bg-secondary"
+
+[midterm]
+id = "midterm"
+type = "exam"
+name = "Midterm Exam"
+short_name = "Midterm"
+url = "/course-example#midterm"
+page = "/course-example#midterm"
+date = "2024-09-05T18:00:00"
+color = "bg-danger"
 ```
 
 {{< dl "table-striped" >}}
@@ -125,6 +135,7 @@ color = "bg-secondary"
 `url` | Link target for badge-style output.
 `page` | Link target for default assignment output.
 `date` | Due date used by `date` and `countdown` output.
+`type` | Optional assignment category. Use `type = "exam"` for exams so `schedule/overview` renders the day as an exam cell.
 `color` | Bootstrap badge color class, optionally combined with text classes.
 {{< /dl >}}
 

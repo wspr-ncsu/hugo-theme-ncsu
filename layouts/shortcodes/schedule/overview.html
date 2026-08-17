@@ -1,0 +1,274 @@
+{{- $startParam := .Page.Params.startDate -}}
+{{- $weekCount := 17 -}}
+{{- if .IsNamedParams -}}
+	{{- with .Get "start" -}}{{- $startParam = . -}}{{- end -}}
+	{{- with .Get "startDate" -}}{{- $startParam = . -}}{{- end -}}
+	{{- with .Get "weeks" -}}{{- $weekCount = int . -}}{{- end -}}
+{{- else -}}
+	{{- with .Get 0 -}}{{- $startParam = . -}}{{- end -}}
+	{{- with .Get 1 -}}{{- $weekCount = int . -}}{{- end -}}
+{{- end -}}
+{{- $start := time $startParam -}}
+{{- $days := slice
+	(dict "key" "mon" "label" "Mon" "offset" 0)
+	(dict "key" "tue" "label" "Tue" "offset" 1)
+	(dict "key" "wed" "label" "Wed" "offset" 2)
+	(dict "key" "thu" "label" "Thu" "offset" 3)
+	(dict "key" "fri" "label" "Fri" "offset" 4)
+-}}
+
+<div class="schedule-overview" aria-label="Condensed course schedule">
+	<div class="schedule-overview-legend">
+		<span><i class="so-swatch so-lecture"></i> Lecture</span>
+		<span><i class="so-swatch so-noclass"></i> No class</span>
+		<span><i class="so-swatch so-exam"></i> Exam</span>
+		<span><i class="so-swatch so-assignment"></i> Assignment due</span>
+	</div>
+
+	<div class="schedule-overview-grid">
+		<div class="so-head so-week-head"></div>
+		{{- range $days -}}
+		<div class="so-head">{{ .label }}</div>
+		{{- end -}}
+
+		{{- range $week := seq 1 $weekCount -}}
+			{{- $weekStart := $start.AddDate 0 0 (mul (sub $week 1) 7) -}}
+			<div class="so-week-label">
+				<span>Week {{ $week }}</span>
+			</div>
+
+			{{- range $days -}}
+				{{- $cellDate := $weekStart.AddDate 0 0 .offset -}}
+				{{- $dateKey := $cellDate.Format "2006-01-02" -}}
+				{{- $cellClasses := slice "so-day" -}}
+				{{- $lectureForDay := false -}}
+				{{- $assignmentForDay := false -}}
+				{{- range hugo.Data.lectures -}}
+					{{- if eq .date $dateKey -}}
+						{{- $cellClasses = $cellClasses | append "so-day-lecture" -}}
+						{{- $lectureForDay = . -}}
+					{{- end -}}
+				{{- end -}}
+				{{- range hugo.Data.happenings -}}
+					{{- if eq .date $dateKey -}}
+						{{- $kind := .kind | default "happening" -}}
+						{{- if eq $kind "noclass" -}}{{- $cellClasses = $cellClasses | append "so-day-noclass" -}}{{- end -}}
+					{{- end -}}
+				{{- end -}}
+				{{- range hugo.Data.assignments -}}
+					{{- $assignment := . -}}
+					{{- with $assignment.date -}}
+						{{- if eq ((time .).Format "2006-01-02") $dateKey -}}
+							{{- $assignmentForDay = true -}}
+							{{- if eq ($assignment.type | default "") "exam" -}}
+								{{- $cellClasses = $cellClasses | append "so-day-exam" -}}
+							{{- else -}}
+								{{- $cellClasses = $cellClasses | append "so-day-assignment" -}}
+							{{- end -}}
+						{{- end -}}
+					{{- end -}}
+				{{- end -}}
+				{{- $cellClass := delimit (uniq $cellClasses) " " -}}
+				{{- if and $lectureForDay (not $assignmentForDay) -}}
+				<a class="{{ $cellClass }}" href="#{{ $lectureForDay.id }}" data-date="{{ $dateKey }}" aria-label="{{ $cellDate.Format "Monday, January 2" }}">
+				{{- else -}}
+				<div class="{{ $cellClass }}" data-date="{{ $dateKey }}" aria-label="{{ $cellDate.Format "Monday, January 2" }}">
+				{{- end -}}
+					<div class="so-day-num">{{ $cellDate.Format "Jan 2" }}</div>
+					<div class="so-items">
+						{{- range hugo.Data.lectures -}}
+							{{- if eq .date $dateKey -}}
+								{{- if $assignmentForDay -}}
+									<a class="so-pill" href="#{{ .id }}" title="Lecture: {{ .title }}">{{ .id }}</a>
+								{{- else -}}
+									<span class="so-pill" title="Lecture: {{ .title }}">{{ .id }}</span>
+								{{- end -}}
+							{{- end -}}
+						{{- end -}}
+
+						{{- range hugo.Data.happenings -}}
+							{{- if eq .date $dateKey -}}
+								{{- $kind := .kind | default "happening" -}}
+								{{- if eq $kind "noclass" -}}
+									<span class="so-pill" title="{{ .title }}">No class</span>
+								{{- end -}}
+							{{- end -}}
+						{{- end -}}
+
+						{{- range hugo.Data.assignments -}}
+							{{- $assignment := . -}}
+							{{- with $assignment.date -}}
+								{{- $assignmentDate := (time .).Format "2006-01-02" -}}
+								{{- if eq $assignmentDate $dateKey -}}
+									{{- $href := $.Page.RelPermalink -}}
+									{{- with $assignment.page -}}{{- $href = . -}}{{- end -}}
+									{{- with $assignment.url -}}{{- $href = . -}}{{- end -}}
+									{{- $badgeClass := $assignment.color | default "bg-secondary" -}}
+									{{- $isExam := eq ($assignment.type | default "") "exam" -}}
+									{{- $assignmentKind := cond $isExam "Exam" "Assignment due" -}}
+									{{- $assignmentLabel := $assignment.short_name | default "Due" -}}
+									{{- if $isExam -}}<span class="so-prefix">Exam:</span>{{- end -}}
+									<a class="badge {{ $badgeClass }} so-assignment-badge" href="{{ $href }}" title="{{ $assignmentKind }}: {{ $assignment.short_name | default $assignment.name }}">{{ $assignmentLabel }}</a>
+								{{- end -}}
+							{{- end -}}
+						{{- end -}}
+					</div>
+				{{- if and $lectureForDay (not $assignmentForDay) -}}
+				</a>
+				{{- else -}}
+				</div>
+				{{- end -}}
+			{{- end -}}
+		{{- end -}}
+	</div>
+</div>
+
+<style>
+.schedule-overview{
+	margin:1rem 0 2rem;
+}
+.schedule-overview-legend{
+	display:flex;
+	flex-wrap:wrap;
+	gap:.75rem 1rem;
+	align-items:center;
+	font-size:.875rem;
+	color:var(--bs-secondary-color, #6c757d);
+	margin-bottom:.75rem;
+}
+.schedule-overview-legend span{
+	display:inline-flex;
+	align-items:center;
+	gap:.35rem;
+}
+.schedule-overview-grid{
+	display:grid;
+	grid-template-columns:minmax(3.6rem, max-content) repeat(5, minmax(4.25rem, 1fr));
+	gap:.2rem .3rem;
+	max-width:62rem;
+}
+.so-head{
+	font-size:.75rem;
+	font-weight:700;
+	text-align:center;
+	color:var(--bs-secondary-color, #6c757d);
+}
+.so-week-head{
+	text-align:left;
+}
+.so-week-label{
+	min-height:1.85rem;
+	display:flex;
+	align-items:center;
+	padding-right:.2rem;
+	line-height:1.1;
+	font-size:.8rem;
+	font-weight:700;
+}
+.so-day{
+	min-height:1.85rem;
+	border:1px solid var(--bs-border-color, #dee2e6);
+	border-radius:.25rem;
+	background:var(--bs-body-bg, #fff);
+	padding:.18rem .3rem;
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+	gap:.25rem;
+	color:inherit;
+	text-decoration:none;
+}
+a.so-day:hover,
+a.so-day:focus{
+	text-decoration:none;
+	filter:brightness(.98);
+}
+.so-day-lecture{
+	background:#dbeafe;
+	border-color:#93c5fd;
+}
+.so-day-noclass{
+	background:#dcfce7;
+	border-color:#86efac;
+}
+.so-day-exam{
+	background:#fee2e2;
+	border-color:#fca5a5;
+}
+.so-day-assignment{
+	border-color:#dc3545;
+}
+.so-today{
+	border-color:#212529;
+	box-shadow:inset 0 0 0 1px #212529;
+}
+.so-day-num{
+	font-size:.68rem;
+	line-height:1;
+	color:var(--bs-secondary-color, #6c757d);
+}
+.so-items{
+	display:flex;
+	flex-wrap:nowrap;
+	gap:.18rem;
+	align-items:center;
+	justify-content:flex-end;
+	min-width:0;
+}
+.so-swatch{
+	width:.8rem;
+	height:.8rem;
+	border-radius:.12rem;
+	display:inline-block;
+	flex:0 0 auto;
+	box-shadow:inset 0 0 0 1px rgba(0,0,0,.12);
+}
+.so-pill{
+	display:inline-flex;
+	align-items:center;
+	justify-content:center;
+	min-height:1.05rem;
+	padding:0;
+	border-radius:.15rem;
+	font-size:.65rem;
+	font-weight:700;
+	line-height:1;
+	color:#212529;
+	text-decoration:none;
+	white-space:nowrap;
+}
+a.so-pill{
+	text-decoration:none;
+}
+.so-lecture{ background:#dbeafe; border-color:#93c5fd; }
+.so-noclass{ background:#dcfce7; border-color:#86efac; }
+.so-exam{ background:#fee2e2; border-color:#fca5a5; }
+.so-assignment{ background:#fff; border:1px solid #dc3545; box-shadow:none; }
+.so-assignment-badge{
+	font-size:.62rem;
+	line-height:1;
+	padding:.18rem .28rem;
+	white-space:nowrap;
+}
+.so-prefix{
+	font-size:.65rem;
+	font-weight:700;
+	line-height:1;
+	white-space:nowrap;
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+	var today = new Date();
+	var yyyy = today.getFullYear();
+	var mm = String(today.getMonth() + 1).padStart(2, "0");
+	var dd = String(today.getDate()).padStart(2, "0");
+	var key = yyyy + "-" + mm + "-" + dd;
+	var cell = document.querySelector(".schedule-overview [data-date='" + key + "']");
+	if (cell) {
+		cell.classList.add("so-today");
+		cell.setAttribute("aria-current", "date");
+	}
+});
+</script>

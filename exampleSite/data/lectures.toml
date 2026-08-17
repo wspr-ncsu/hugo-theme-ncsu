@@ -1,5 +1,6 @@
 [intro]
 id			= "lec-intro"
+date		= "2024-08-19"
 title		= "Course Introduction"
 slides		= "https://drive.google.com/..."
 recording	= "https://ncsu.hosted.panopto.com/..."
@@ -11,6 +12,7 @@ m1 = {title="ACM SIGSOFT Empirical Standards for Software Engineering", url="htt
 
 [hcs]
 id			= "lec-hcs"
+date		= "2024-08-21"
 title		= "Human-Centered Security"
 slides		= "https://drive.google.com/file/d/1T13e6Ivu0YO6qzgmPALzNFX-vL4n3zsN/view?usp=sharing"
 recording	= "https://ncsu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ccd92412-9064-4cad-a219-b0d60150b6e7"
@@ -19,6 +21,7 @@ a1 = {authors="L Cranor, S Garfinkel", title="Security and Usability: Designing 
 
 [foundations2]
 id			= "lec-foundations"
+date		= "2024-08-26"
 title		= "Foundations"
 short		= "Guest Lecture:"
 slides		= "https://drive.google.com/file/d/1jsWefQYG1rdh5eKWTYjGpTAa5zM7N9kN/view?usp=sharing"
@@ -29,6 +32,7 @@ m2 = {authors="T Kohno, Y Acar, W Loh", title="Ethical Frameworks and Computer S
 
 [ethics]
 id			= "lec-ethics"
+date		= "2024-08-28"
 label		= "xyz"
 title		= "Ethical Considerations"
 slides		= "https://drive.google.com/file/d/1q5di9rTRkXFZHynjCy_zwHWNoFjDnzMk/view?usp=sharing"
@@ -38,6 +42,7 @@ m1 = {title="NC State IRB Website", url="https://research.ncsu.edu/administratio
 
 [experiments1]
 id			= "lec-exp1"
+date		= "2024-09-04"
 title		= "Experiment Design 1"
 time		= "XYZ pm"
 slides		= "https://drive.google.com/file/d/1-wpwQM1sLmDYGNr8hX9YtOt4iZd7UKfR/view?usp=sharing"
